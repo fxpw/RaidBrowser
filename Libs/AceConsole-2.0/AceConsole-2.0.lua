@@ -14,7 +14,7 @@ License: LGPL v2.1
 ]]
 
 local MAJOR_VERSION = "AceConsole-2.0"
-local MINOR_VERSION = 90000 + tonumber(("$Revision: 1094 $"):match("(%d+)"))
+local MINOR_VERSION = 90000 + tonumber(("$Revision: 1095 $"):match("(%d+)"))
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -141,7 +141,7 @@ local AceConsole = AceOO.Mixin { "Print", "PrintComma", "PrintLiteral", "CustomP
 local Dewdrop
 
 local _G = getfenv(0)
-
+local print_ = print
 local function print(text, name, r, g, b, frame, delay)
 	if not text or text:len() == 0 then
 		text = " "
@@ -2319,6 +2319,7 @@ function AceConsole:RegisterChatCommand(...) -- slashCommands, options, name
 	else
 		slashCommands, options, name = ...
 	end
+	-- print_(slashCommands, options, name)
 	if type(slashCommands) ~= "table" and slashCommands ~= false then
 		AceConsole:error("Bad argument #2 to `RegisterChatCommand' (expected table, got %s)", type(slashCommands))
 	end
@@ -2665,9 +2666,9 @@ local function activate(self, oldLib, oldDeactivate)
 	self:RegisterChatCommand("/gm", ToggleHelpFrame, "GM")
 	local t = { "/print", "/echo" }
 	local _,_,_,enabled,loadable = GetAddOnInfo("DevTools")
-	if not enabled and not loadable then
-		table.insert(t, "/dump")
-	end
+	-- if not enabled and not loadable then
+		-- table.insert(t, "/dump")
+	-- end
 	self:RegisterChatCommand(t, function(text)
 		text = text:trim():match("^(.-);*$")
 		local f, err = loadstring("AceLibrary('AceConsole-2.0'):PrintLiteral(" .. text .. ")")
