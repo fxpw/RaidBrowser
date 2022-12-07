@@ -1259,8 +1259,8 @@ local role_patterns = {
 }
 
 local gearscore_patterns = {
-	'[2-3][1-9][1-9]..csep..%+..csep',
-	'[2-3][1-9][1-9]',
+	'[200-300]'..csep..'%+',
+	'[200-300]',
 
 }
 
