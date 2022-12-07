@@ -1259,8 +1259,8 @@ local role_patterns = {
 }
 
 local gearscore_patterns = {
-	'[200-300]'..csep..'%+',
-	'[200-300]',
+	'[2-3][0-9][0-9]'..csep..'%+',
+	'[2-3][0-9][0-9]',
 
 }
 
@@ -1505,6 +1505,7 @@ function raid_browser.raid_info(message)
 				-- return gs_start
 
 			gs = string.sub(message, gs_start, gs_end);
+			break
 			--gs = format_gs_string(string.sub(message, gs_start))
 		else
 			gs = 'нет'
