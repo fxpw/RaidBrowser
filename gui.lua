@@ -8,6 +8,16 @@ if AceLibrary:HasInstance("FuBarPlugin-2.0") then
 else
 	RaidBrowser = AceLibrary("AceAddon-2.0"):new("AceConsole-2.0","AceDB-2.0","AceEvent-2.0")
 end
+local function strip(object)
+	if object.GetNumRegions then
+		for i = 1, object:GetNumRegions() do
+			local region = select(i, object:GetRegions())
+			if region and region.IsObjectType and region:IsObjectType("Texture") then
+				region:SetTexture()
+			end
+		end
+	end
+end
 
 local TITLE = rbTitle
 local addon = RaidBrowser
@@ -1222,6 +1232,29 @@ local function CreateLogFrame()
 			FauxScrollFrame_OnVerticalScroll(scrollBar, value, recordHeight, addon.LogChangedRB)
 		end)
 	end
+
+	strip(LFRParentFrame)
+	strip(LFRBrowseFrame)
+	LFRBrowseFrame:SetBackdrop({
+		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+		edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+		edgeSize = 16,
+		insets = { left = 4, right = 4, top = 4, bottom = 4 },
+	})
+	strip(LFRQueueFrame)
+	LFRQueueFrame:SetBackdrop({
+		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+		edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+		edgeSize = 16,
+		insets = { left = 4, right = 4, top = 4, bottom = 4 },
+	})
+	strip(LFRHistoryFrame)
+	LFRHistoryFrame:SetBackdrop({
+		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+		edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+		edgeSize = 16,
+		insets = { left = 4, right = 4, top = 4, bottom = 4 },
+	})
 end
 
 
