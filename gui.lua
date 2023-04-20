@@ -167,7 +167,7 @@ end
 local function SendSpam()
 	if #messagetospam > 255 then return end
 	local f = CreateFrame("Frame",nil,UIParent)
-	f:SetScript("OnUpdate",SendChatMessageOnUpd)
+	-- f:SetScript("OnUpdate",SendChatMessageOnUpd)
 end
 
 local function space(str, limit, indent, indent1)
