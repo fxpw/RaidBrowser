@@ -33,7 +33,7 @@ function E.GUI:CreateBackdrop(frame, template)
         frame:CreateBackdrop(template)
         return
     end
-	if not template then template = "Default" end
+	-- if not template then template = "Default" end
 
 	local parent = (frame.IsObjectType and frame:IsObjectType("Texture") and frame:GetParent()) or frame
 	local backdrop = frame.backdrop or CreateFrame("Frame", nil, parent)

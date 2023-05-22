@@ -28,7 +28,8 @@ ignore = {
 	"111/[A-Z][A-Z0-9_]+",	-- Setting an undefined global variable
 	"113/[A-Z][A-Z0-9_]+",	-- Accessing an undefined global variable (GlobalStrings and Constants 2char+)
 	"131/[A-Z][A-Z0-9_]+",	-- Unused implicitly defined global variable (GlobalStrings and Constants 2char+)
-	"211/[E|L|V|P|G|AddOnName]",-- Unused local variable
+	"211/[E|L|V|P|G]",-- Unused local variable
+	"211/AddOnName",-- Unused local variable
 	"213/i",				-- Unused loop variable
 	"432/self",				-- Shadowing an upvalue
 	"113/NPE_TutorialPointerFrame",

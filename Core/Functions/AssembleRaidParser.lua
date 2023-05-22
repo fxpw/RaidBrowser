@@ -10,10 +10,12 @@ local ReceiveRaidAsseblePrefix = "RB_RequestAddToRaid"
 local function ReceiveRequestAddToRaid(prefix, msg, dist, sender)
     local success, receivedPlayerData = E:Deserialize(msg)
     E.Core:Print("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
-    if type(receivedPlayerData) == "table" then
-        table.insert(E.Core.InvTable, receivedPlayerData)
-        E.GUI:AssembleFrameInfoUpdate()
-    end
+	if success then
+		if type(receivedPlayerData) == "table" then
+			table.insert(E.Core.InvTable, receivedPlayerData)
+			E.GUI:AssembleFrameInfoUpdate()
+		end
+	end
 
     -- E.Core:Print("ReceiveRequestAddToRaid",text, distribution, target)
 end
