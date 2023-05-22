@@ -120,7 +120,7 @@ function E.GUI:OptionsFrameInit()
             _G.RBOF = E.GUI.OptionsFrame
         end
     end
-    E.GUI.OptionsFrame.obj.status.top, E.GUI.OptionsFrame.obj.status.left = 900,600
+    E.GUI.OptionsFrame.obj.status.top, E.GUI.OptionsFrame.obj.status.left = 700,600
     E.Libs.AceConfigDialog["Close"](E.Libs.AceConfigDialog, AddOnName)
 
 end

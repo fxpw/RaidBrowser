@@ -60,7 +60,7 @@ function E:OnProfileReset()
 end
 
 function E.Core:GetConfigSize()
-	return 600, 740
+	return 600, 650
 end
 
 function E.Core:SplitString(str, limit, indent, indent1)
