@@ -6,7 +6,6 @@ local L = E.Libs.ACL:NewLocale(AddOnName, "ruRU")
 L["Create"] = "Собрать"
 L["Find"] = "Найти"
 
-
 L["SortPlayerName"] = "Имя игрока"
 L["SortClassName"] = "Класс"
 L["SortSpecName"] = "Специализация"
