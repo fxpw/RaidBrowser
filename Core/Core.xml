@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Script file="Patterns\BlackLists.lua"/>
+	<Script file="Patterns\LFM.lua"/>
+	<Script file="Patterns\Raids.lua"/>
+	<Script file="Patterns\Roles.lua"/>
+
+	<Script file="Functions\AssembleRaidParser.lua"/>
+	<Script file="Functions\PlayerInfo.lua"/>
+	<Script file="Functions\ChatParser.lua"/>
+	<Script file="Functions\RaidInfo.lua"/>
+	<Script file="Functions\SendMessageToLFG.lua"/>
+	<Script file="Core.lua"/>
+	<!-- <Include file="Core.xml"/> -->
+</Ui>

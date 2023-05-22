@@ -1,26 +1,20 @@
 ## Interface: 30300
-## Title: Raid Browser
-## Version: 1.33
-## Notes: A raid finder that parses chat channel text and displays any found raids in the raid browser LFR frame.
-## Notes-ruRU: Анализ текста канала чата и отображение найденных рейдов в стандартном окне поиска рейдов. /rbru
-## Author: Horsebreed, адаптация, русский язык, кнопка и сленг при сборе рейда на sirus.su - fxpw
-## X-Embeds: Ace2, Ace3, RosterLib, FuBarPlugin-2.0
-## OptionalDeps: Ace2, Ace3, RosterLib, FuBarPlugin-2.0, FuBar2Broker,GearScoreLite
-## SavedVariables: RaidBrowserDB
-## SavedVariablesPerCharacter: raid_browser_character_raidsets, raid_browser_character_current_raidset, spaminfo, historyRB
-## LoadManagers: AddonLoader
-## X-LoadOn-Group: true
-## X-LoadOn-Slash: /rbru, /RaidBrowser
-## X-LoadOn-LDB-Launcher: Interface\AddOns\RaidBrowser\icon
+## Title: RaidBrowser
+## Version: 2.01
+## Notes: A raid finder that parses chat channel text and displays any found raids in the raid browser frame.
+## Notes-ruRU: Анализ текста канала чата и отображение найденных рейдов в окне поиска рейдов.
+## Author: fxpw
+## SavedVariables: RaidBrowserDB, RaidBrowserPrivateDB
+## SavedVariablesPerCharacter: RaidBrowserCharacterDB
+
+Libs\Libs.xml
+Tools.lua
+Init.lua
+
+Locale\Locale.xml
+Settings\Settings.xml
+Core\Core.xml
+GUI\GUI.xml
 
 
-embeds.xml
-locale.lua
-core.lua
-event.lua
-timer.lua
-stats.lua
-gui.lua
-# history.lua
-raidset_frame.lua
-checkversion.lua
+
