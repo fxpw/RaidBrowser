@@ -36,7 +36,7 @@ local menuList = {
 		text = L["SendMSGToRL(current)"],
 		notCheckable = 1,
 		func = function(self, arg1, arg2)
-            SendChatMessage("RB!: Хочу в пати, я ".. arg2.ilvl.. " " .. arg2.playerClassName  .." " .. arg2.currentSpecName, "WHISPER", nil, arg1.rlName);
+            SendChatMessage("RB!: Хочу в группу, я ".. arg2.ilvl.. " " .. arg2.playerClassName  .." " .. arg2.currentSpecName, "WHISPER", nil, arg1.rlName);
             E.Core:SendRequestAddToRaid(arg1.rlName)
 		end
 	},
@@ -144,7 +144,7 @@ function  E.GUI:CreateFindFrameRecord(i)
                 text = L["SendMSGToRL(spec"..q..")"],
                 notCheckable = 1,
                 func = function()
-                    SendChatMessage("RB!: Хочу в пати, я " ..menuList[1].arg2.playerClassName  .. " " .. E.Core:GetSpecNameFromTalents(q), "WHISPER", nil, menuList[1].arg1.rlName);
+                    SendChatMessage("RB!: Хочу в группу, я " ..menuList[1].arg2.playerClassName  .. " " .. E.Core:GetSpecNameFromTalents(q), "WHISPER", nil, menuList[1].arg1.rlName);
                     E.Core:SendRequestAddToRaid( menuList[1].arg1.rlName)
                 end
             }
