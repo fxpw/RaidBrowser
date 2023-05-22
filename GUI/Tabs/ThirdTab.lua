@@ -1,7 +1,7 @@
 local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
-local GUI = E.GUI
-local Core = E.Core
+-- local GUI = E.GUI
+-- local Core = E.Core
 
 E.GUI.Options.args.ThirdTab = {
     order = 4,

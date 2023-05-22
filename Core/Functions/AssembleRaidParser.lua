@@ -72,9 +72,9 @@ end
 
 -- /dump TestRequest1("Chozik")
 -- /dump TestRequest1("Шутка")
-function TestRequest1(target)
-    E.Core:SendRequestAddToRaid(target)
-end
+-- function TestRequest1(target)
+--     E.Core:SendRequestAddToRaid(target)
+-- end
 
 
 -- SendAddonMessage("TEST", "test", "CHANNEL", "4.ПоискСпутников");

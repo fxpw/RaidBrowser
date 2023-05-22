@@ -14,7 +14,7 @@ E.GUI.SetOriginalBackdrop = function(frame)
 end
 
 local resolution = GetCVar("gxResolution")
-local screenwidth, screenheight = tonumber(string.match(resolution, "(%d+)x+%d")), tonumber(string.match(resolution, "%d+x(%d+)"))
+local _, screenheight = tonumber(string.match(resolution, "(%d+)x+%d")), tonumber(string.match(resolution, "%d+x(%d+)"))
 
 local pixel, ratio = 1, 768 / screenheight
 local mult = (pixel / UIParent:GetScale()) - ((pixel - ratio) / UIParent:GetScale())

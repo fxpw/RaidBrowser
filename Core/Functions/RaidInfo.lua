@@ -29,7 +29,7 @@ function E.Core:IsRaidInCD(name, size, difficulty)
 end
 
 function E.Core:GetRaidCDInfo(name,size,difficulty)
-    for k,v in pairs(E.Core.RaidCDInfo) do
+    for _,v in pairs(E.Core.RaidCDInfo) do
         if v.savedName == name and v.savedSize == size and v.difficulty == difficulty then
             return v
         end

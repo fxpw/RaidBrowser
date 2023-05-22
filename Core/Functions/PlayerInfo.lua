@@ -2,9 +2,9 @@ local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local GetTalentTabInfo = _G.GetTalentTabInfo
 local C_Talent = C_Talent
-local SendWho = SendWho
-local GetNumWhoResults = GetNumWhoResults
-local GetWhoInfo = GetWhoInfo
+-- local SendWho = SendWho
+-- local GetNumWhoResults = GetNumWhoResults
+-- local GetWhoInfo = GetWhoInfo
 E.Core.PlayerInfo = {};
 
 local function GetTalentTabPoints(i)
@@ -38,9 +38,9 @@ end
 
 
 local function GetAllSpecInfo()
-	local tableForReturn = {}
+	-- local tableForReturn = {}
 	local SpecInfoCache = C_Talent.GetSpecInfoCache()
-	tableForReturn = SpecInfoCache.talentGroupData
+	local tableForReturn = SpecInfoCache.talentGroupData
     return tableForReturn;
 end
 
@@ -49,7 +49,7 @@ end
 
 local function GetActiveSpecIndex()
 	local indices = transform({1, 2, 3}, GetTalentTabPoints)
-	local i, v = max_of(indices);
+	local i, _ = max_of(indices);
 	return i;
 end
 
@@ -91,7 +91,7 @@ end
 
 function E.Core:GetSpecNameFromTalents(specId)
 	local specInfo = E.Core:GetPlayerInfo().specInfo;
-	local i,v =  max_of(specInfo[specId]);
+	local i,_ =  max_of(specInfo[specId]);
 	return GetTalentTabInfo(i);
 end
 
