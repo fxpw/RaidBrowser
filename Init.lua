@@ -47,7 +47,7 @@ AddOn.Func = AddOn.Func or {}
 AddOn.GUI = AddOn.GUI or {}
 AddOn.GUI.Options = {type = "group", name = AddOnName.. " Options", childGroups = "tab", args = {}}
 AddOn.DF = {profile = {}, global = {}}; AddOn.privateVars = {profile = {}} -- Defaults
-AddOn.debug = true
+AddOn.debug = false
 Engine[1] = AddOn
 Engine[2] = {}
 Engine[3] = AddOn.privateVars.profile
