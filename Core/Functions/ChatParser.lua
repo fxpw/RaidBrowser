@@ -1,4 +1,4 @@
-local AddOnName, Engine = ...
+local _, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 
 
@@ -49,7 +49,6 @@ function E.Core:FindRoles(message)
         for _, pattern in pairs(roleTable) do
             if not findIter then
                 local result = string.find(message, pattern)
-                
                 -- If a raid was found then save it to our list of roles and continue.
                 if result then
                     findIter = true
@@ -61,7 +60,6 @@ function E.Core:FindRoles(message)
         end
         roles[roleName] = findIter and 1 or 0
     end
-
     return roles, message
 end
 
@@ -193,7 +191,7 @@ local function ChatParserFunc(self, event, message, sender, language)
         tableForAdd["rlFaction"] = rlFaction;
         tableForAdd["lastSpamTime"] = time();
         tableForAdd["message"] = originalMessage;
-
+		tableForAdd["latestMSG"] = message;
         E.Core:RemoveRecordsByName(sender);
         table.insert(E.Core.raidsTable, tableForAdd)
         E.GUI:FindFrameRaidInfoUpdate();

@@ -2,8 +2,8 @@ local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local GUI = E.GUI;
 GUI.FirstTab = {};
-local mainFrame
-local AGUI = E.Libs.AceGUI
+-- local mainFrame
+-- local AGUI = E.Libs.AceGUI
 
 E.dungeonsForOptions = {
 
@@ -528,17 +528,17 @@ end
 
 
 
-function TestaddF()
-    for i = 1,60 do
-        table.insert(E.Core.InvTable,{
-            playerName = "Шутка",
-            currentSpecName = "Фурик в теле энха" ..math.random(0,100) ,
-            ilvl = math.random(1,234),
-            playerClassName = "Шоумэн"..math.random(0,100),
-            dd = math.random(0,1),
-            heal = math.random(0,1),
-            tank = math.random(0,1),
-        })
-    end
-    E.GUI:AssembleFrameInfoUpdate()
-end
+-- function TestaddF()
+--     for i = 1,60 do
+--         table.insert(E.Core.InvTable,{
+--             playerName = "Шутка",
+--             currentSpecName = "Фурик в теле энха" ..math.random(0,100) ,
+--             ilvl = math.random(1,234),
+--             playerClassName = "Шоумэн"..math.random(0,100),
+--             dd = math.random(0,1),
+--             heal = math.random(0,1),
+--             tank = math.random(0,1),
+--         })
+--     end
+--     E.GUI:AssembleFrameInfoUpdate()
+-- end

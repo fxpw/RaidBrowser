@@ -5,19 +5,19 @@ local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, Prof
 E.Core.CanSendMessage = false
 E.Core.IsNeedSendMessage = false
 
-local function AddSpaceToString(str, limit, indent, indent1)
-	indent = indent or ""
-	indent1 = indent1 or indent
-	limit = limit or 70
-	local here = 1-#indent1
-	local function check(sp, st, word, fi)
-	   if fi - here > limit then
-		  here = st - #indent
-		  return "\n"..indent..word
-	   end
-	end
-	return indent1..str:gsub("(%s+)()(%S+)()", check)
-end
+-- local function AddSpaceToString(str, limit, indent, indent1)
+-- 	indent = indent or ""
+-- 	indent1 = indent1 or indent
+-- 	limit = limit or 70
+-- 	local here = 1-#indent1
+-- 	local function check(sp, st, word, fi)
+-- 	   if fi - here > limit then
+-- 		  here = st - #indent
+-- 		  return "\n"..indent..word
+-- 	   end
+-- 	end
+-- 	return indent1..str:gsub("(%s+)()(%S+)()", check)
+-- end
 
 
 

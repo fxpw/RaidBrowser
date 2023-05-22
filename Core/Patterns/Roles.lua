@@ -11,7 +11,7 @@ local sep = "[" .. sep_chars .. "]";
 local csep = sep.."*";
 
 -- Positive closure of sep.
-local psep = sep.."+";
+-- local psep = sep.."+";
 
 E.Patterns.ILVL = {
 	-- "2[0-9]{2}%+",

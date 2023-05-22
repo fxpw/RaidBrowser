@@ -190,7 +190,7 @@ function  E.GUI:CreateFindFrameRecord(i)
     function record:UpdateAll()
         self.rlName:SetText(self.raidInfo.rlName);
 
-        local cdInfo,cdColor = E.Core:GetCDInfo(self.raidInfo)
+        local _,cdColor = E.Core:GetCDInfo(self.raidInfo)
         local raidName = cdColor .. self.raidInfo.raidName
 
         self.raidName:SetText(raidName);
@@ -309,27 +309,27 @@ function  E.GUI:SecondTabInit()
     E.GUI:CreateFindFrame()
 end
 
-function TestaddS()
-    for i = 1,60 do
-        table.insert(E.Core.raidsTable,{
-            tank =  math.random(0,1),
-            ilvl =  270,
-            raidName =  "Охота",
-            rlLang =  "всеобщий",
-            message =  "DASFASGFAS",
-            difficulty =  4,
-            heal =  math.random(0,1),
-            lastSpamTime =  time(),
-            dd =  math.random(0,1),
-            instanceName =  {{"Логово Магтеридона",2}, {"Испытание крестоносца",2}},
-            rlName =  "Шутка",
-            patterns = { "table: 7C7BCC80"},
-            size =  25,
-            rlFaction = "Horde",
-         })
-    end
-    E.GUI:FindFrameRaidInfoUpdate()
-end
+-- function TestaddS()
+--     for i = 1,60 do
+--         table.insert(E.Core.raidsTable,{
+--             tank =  math.random(0,1),
+--             ilvl =  270,
+--             raidName =  "Охота",
+--             rlLang =  "всеобщий",
+--             message =  "DASFASGFAS",
+--             difficulty =  4,
+--             heal =  math.random(0,1),
+--             lastSpamTime =  time(),
+--             dd =  math.random(0,1),
+--             instanceName =  {{"Логово Магтеридона",2}, {"Испытание крестоносца",2}},
+--             rlName =  "Шутка",
+--             patterns = { "table: 7C7BCC80"},
+--             size =  25,
+--             rlFaction = "Horde",
+--          })
+--     end
+--     E.GUI:FindFrameRaidInfoUpdate()
+-- end
 
 
 

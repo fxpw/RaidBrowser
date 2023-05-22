@@ -244,8 +244,8 @@ function E.GUI:CollapseFrameInit()
 end
 
 
-function TestUT(text)
-    E.GUI:UpdateInfoText(text)
-end
+-- function TestUT(text)
+--     E.GUI:UpdateInfoText(text)
+-- end
 
 
