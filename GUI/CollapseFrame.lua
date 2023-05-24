@@ -37,20 +37,15 @@ E.GUI.InfoTextOnClickFunc = function(self,click)
 end
 
 function E.GUI:CreateCollapseFrame()
-    self.CollapseFrame = CreateFrame("Frame","RB_CollapseFrame",UIParent)
-    self.CollapseFrame.FrameHeight = 600
-    self.CollapseFrame.FrameWidth = 40
-    self.CollapseFrame.FullFrameWidth = 700
-
-    self.font = "ChatFontSmall";
-    self.fontHeight = select(2, getglobal(self.font):GetFont());
-    self.recordHeight = self.fontHeight + 15;
-    self.recordWidth = self.CollapseFrame.FrameHeight - 35
+    self.CollapseFrame = CreateFrame("Frame", "RB_CollapseFrame", UIParent)
+    -- self.CollapseFrame.MainFrameHeight = E.db.MainFrameHeight
+    -- self.CollapseFrame.FrameWidth = E.db.FrameWidth
+    -- self.CollapseFrame.CollapseFrameWidth = E.db.CollapseFrameWidth
 
     local CollapseFrame = self.CollapseFrame
     -- CollapseFrame:CreateBackdrop("Transparent")
     E.GUI:CreateBackdrop(CollapseFrame,"Transparent")
-    CollapseFrame:SetSize(self.CollapseFrame.FrameHeight,self.CollapseFrame.FrameWidth)
+    CollapseFrame:SetSize(E.db.CollapseFrameWidth, E.db.CollapseFrameHeight)
     CollapseFrame:SetPoint("CENTER", UIParent, "CENTER", E.db.CollapseFrameX, E.db.CollapseFrameY)
     CollapseFrame:Hide()
     CollapseFrame:SetFrameStrata("FULLSCREEN_DIALOG");
@@ -100,7 +95,7 @@ function E.GUI:CreateCollapseFrame()
     -- ShowFirstFrameTab:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(ShowFirstFrameTab,"Transparent")
     -- ShowFirstFrameTab:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(ShowFirstFrameTab, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    E.GUI:Size(ShowFirstFrameTab, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight)
     ShowFirstFrameTab:SetPoint("TOPLEFT", CollapseFrame, "TOPLEFT",0,0);
     ShowFirstFrameTab:SetScript("OnClick",function(self)
         E.GUI:OpenTabFrameWhitIndex(1)
@@ -121,8 +116,8 @@ function E.GUI:CreateCollapseFrame()
     local ShowSecondFrameTab = CollapseFrame.ShowSecondFrameTab
     -- ShowSecondFrameTab:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(ShowSecondFrameTab,"Transparent")
-    -- ShowSecondFrameTab:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(ShowSecondFrameTab, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    -- ShowSecondFrameTab:Size(E.db.CollapseFrameWidth,E.db.CollapseFrameWidth);
+    E.GUI:Size(ShowSecondFrameTab, E.db.CollapseFrameHeight,E.db.CollapseFrameHeight)
     ShowSecondFrameTab:SetPoint("LEFT", ShowFirstFrameTab, "RIGHT",0,0);
     ShowSecondFrameTab:SetScript("OnClick",function(self)
         E.GUI:OpenTabFrameWhitIndex(2)
@@ -142,8 +137,8 @@ function E.GUI:CreateCollapseFrame()
     local ShowThirdFrameTab = CollapseFrame.ShowThirdFrameTab
     -- ShowThirdFrameTab:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(ShowThirdFrameTab,"Transparent")
-    -- ShowThirdFrameTab:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(ShowThirdFrameTab, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    -- ShowThirdFrameTab:Size(E.db.CollapseFrameHeight,E.db.CollapseFrameHeight);
+    E.GUI:Size(ShowThirdFrameTab, E.db.CollapseFrameHeight,E.db.CollapseFrameHeight)
     ShowThirdFrameTab:SetPoint("LEFT", ShowSecondFrameTab, "RIGHT",0,0);
     ShowThirdFrameTab:SetScript("OnClick",function(self)
         E.GUI:OpenTabFrameWhitIndex(3)
@@ -163,8 +158,8 @@ function E.GUI:CreateCollapseFrame()
     local CloseButton = CollapseFrame.CloseButton
     -- CloseButton:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(CloseButton,"Transparent")
-    -- CloseButton:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(CloseButton, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    -- CloseButton:Size(E.db.CollapseFrameHeight,E.db.CollapseFrameHeight);
+    E.GUI:Size(CloseButton, E.db.CollapseFrameHeight,E.db.CollapseFrameHeight)
     CloseButton:SetPoint("TOPRIGHT", CollapseFrame, "TOPRIGHT",0,0);
     CloseButton:SetScript("OnClick",function(self) E.GUI.CollapseFrame:Hide() end);
     CloseButton.texture = CloseButton:CreateTexture()
@@ -180,8 +175,8 @@ function E.GUI:CreateCollapseFrame()
     local OptionsButton = CollapseFrame.OptionsButton
     -- OptionsButton:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(OptionsButton,"Transparent")
-    -- OptionsButton:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(OptionsButton, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    -- OptionsButton:Size(E.db.CollapseFrameHeight,E.db.CollapseFrameHeight);
+    E.GUI:Size(OptionsButton, E.db.CollapseFrameHeight,E.db.CollapseFrameHeight)
     OptionsButton:SetPoint("RIGHT", CloseButton, "LEFT",0,0);
     OptionsButton:SetScript("OnClick",function(self)
         if E.GUI.OptionsFrame:IsShown() then
@@ -201,8 +196,8 @@ function E.GUI:CreateCollapseFrame()
     local  CollapseButton = CollapseFrame.CollapseButton
     -- CollapseButton:CreateBackdrop("Transparent");
     E.GUI:CreateBackdrop(CollapseFrame,"Transparent")
-    -- CollapseButton:Size(self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth);
-    E.GUI:Size(CollapseButton, self.CollapseFrame.FrameWidth,self.CollapseFrame.FrameWidth)
+    -- CollapseButton:Size(E.db.CollapseFrameHeight,E.db.CollapseFrameHeight);
+    E.GUI:Size(CollapseButton, E.db.CollapseFrameHeight,E.db.CollapseFrameHeight)
     CollapseButton:SetPoint("RIGHT", OptionsButton, "LEFT",0,0);
     CollapseButton:SetScript("OnClick",function(self)
         E.GUI:HideShowMainFrame()
@@ -214,6 +209,17 @@ function E.GUI:CreateCollapseFrame()
     E.GUI:CreateBackdrop(CollapseButton,"Transparent")
     CollapseButton:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
 	CollapseButton:HookScript("OnLeave", E.GUI.SetOriginalBackdrop);
+end
+
+function E.GUI:UpdateCollapseFrame()
+	E.GUI:Size(self.CollapseFrame, E.db.CollapseFrameWidth, E.db.CollapseFrameHeight);
+	E.GUI:Size(self.CollapseFrame.ShowFirstFrameTab, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
+	E.GUI:Size(self.CollapseFrame.ShowSecondFrameTab, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
+	E.GUI:Size(self.CollapseFrame.ShowThirdFrameTab, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
+	E.GUI:Size(self.CollapseFrame.CloseButton, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
+
+	E.GUI:Size(self.CollapseFrame.OptionsButton, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
+	E.GUI:Size(self.CollapseFrame.CollapseButton, E.db.CollapseFrameHeight, E.db.CollapseFrameHeight);
 end
 
 function E.GUI:UpdateInfoText(text)

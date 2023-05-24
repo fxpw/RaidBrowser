@@ -9,13 +9,11 @@ E.GUI.Options.args.ThirdTab = {
 	name = L["History Raid Tab"],
 	childGroups = "tree",
 	get = function(info) return E.db[info[#info]] end,
-	set = function(info, value) E.db[info[#info]] = value end,
+	set = function(info, value)
+		E.db[info[#info]] = value
+	end,
     args = {
-		-- intro = {
-		-- 	order = 1,
-		-- 	type = "description",
-		-- 	name = L["History raid opt desc"]
-		-- },
+
     }
 }
 
@@ -45,7 +43,7 @@ function E.GUI:CreateHistoryFrame()
 
 	E.GUI.CollapseFrame.MainFrame.HistoryFrame.ScrollParent = CreateFrame("Frame", "RBScrollParent", HistoryFrame);
     local ScrollParent = E.GUI.CollapseFrame.MainFrame.HistoryFrame.ScrollParent
-    ScrollParent:SetPoint("TOPLEFT", HistoryFrame ,"TOPLEFT", 0, -E.GUI.CollapseFrame.FrameWidth)
+    ScrollParent:SetPoint("TOPLEFT", HistoryFrame ,"TOPLEFT", 0, -E.db.CollapseFrameHeight)
     ScrollParent:SetPoint("BOTTOMRIGHT", HistoryFrame ,"BOTTOMRIGHT", 0, 0)
     E.GUI.CollapseFrame.MainFrame.HistoryFrame.ScrollParent.Records = {};
 end

@@ -138,6 +138,22 @@ function E.GUI:OpenMainFrame()
     -- E.GUI.MainFrame.FindFrame:Show();
 end
 
+function E.GUI:UpdateFrameConstants()
+    self.font = "ChatFontSmall";
+    self.fontHeight = select(2, getglobal(self.font):GetFont());
+    self.recordHeight = self.fontHeight + 15;
+    self.recordWidth = E.db.MainFrameHeight - 30
+end
+
+function E.GUI:UpdateAllFramesSize()
+	E.GUI:UpdateFrameConstants();
+	E.GUI:UpdateCollapseFrame();
+	E.GUI:UpdateMainFrame();
+	E.GUI:UpdateAssembleFrame();
+	E.GUI:UpdateFindFrame();
+	-- MainFrame:SetSize(self.CollapseFrame.MainFrameHeight,self.CollapseFrame.CollapseFrameWidth);
+end
+
 
 function E.GUI:ShowOptionsFrame()
     E.Libs.AceConfigDialog["Open"](E.Libs.AceConfigDialog, AddOnName)
@@ -149,8 +165,9 @@ end
 
 function E.GUI:Init()
     -- self:CreateMainFrame()
+	self:UpdateFrameConstants();
     self:CollapseFrameInit();
-    self:MainFrameInit()
+    self:MainFrameInit();
     self:FirstTabInit();
     self:SecondTabInit();
     self:ThirdTabInit();

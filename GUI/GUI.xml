@@ -6,6 +6,6 @@
 	<Script file="Tabs\FirstTab.lua"/>
 	<Script file="Tabs\SecondTab.lua"/>
 	<Script file="Tabs\ThirdTab.lua"/>
-
+	<Script file="Tabs\FourTab.lua"/>
 	<!-- <Include file="Core.xml"/> -->
 </Ui>

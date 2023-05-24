@@ -271,8 +271,8 @@ local menuList = {
 		notCheckable = 1,
 		func = function(self, arg1, arg2)
             -- SendChatMessage("RB!: Хочу в рейд, я ".. arg2.pilvl.. " " .. arg2.pClass  .." " .. arg2.currentSpecName, "WHISPER", nil, arg1.rlName);
-            InviteUnit(arg1.playerName)
-            E.Core:ClearAssembleTableAtName(arg1.playerName)
+            InviteUnit(arg1.playerName);
+            E.Core:ClearAssembleTableAtName(arg1.playerName);
 		end
 	},
     {
@@ -280,7 +280,7 @@ local menuList = {
 		notCheckable = 1,
 		func = function(self, arg1, arg2)
             -- SendChatMessage("RB!: Хочу в рейд, я ".. arg2.pilvl.. " " .. arg2.pClass  .." " .. arg2.currentSpecName, "WHISPER", nil, arg1.rlName);
-            E.Core:ClearAssembleTableAtName(arg1.playerName)
+            E.Core:ClearAssembleTableAtName(arg1.playerName);
         end
 	},
 }
@@ -288,7 +288,7 @@ local menuList = {
 
 function E.GUI:AssembleFrameInfoUpdate()
     if not E.GUI.CollapseFrame.MainFrame.AssembleFrame:IsVisible() then
-        return
+        return;
     end
     local offset = FauxScrollFrame_GetOffset(E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.ScrollBar)
     local numRecords = #E.Core.InvTable
@@ -311,9 +311,9 @@ function E.GUI:AssembleFrameInfoUpdate()
 end
 
 function E.GUI:CreateAssembleFrameRecord(i)
-    E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] = CreateFrame("Button", nil, E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent);
+    E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] = E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] or CreateFrame("Button", nil, E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent);
     local record = E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i]
-    record.playerInfo = {
+    record.playerInfo = record.playerInfo or {
         playerName = "",
         currentSpecName = "",
         ilvl = "",
@@ -325,43 +325,47 @@ function E.GUI:CreateAssembleFrameRecord(i)
     };
     record:SetHeight(self.recordHeight);
     record:SetWidth(self.recordWidth);
-    record.playerName = record:CreateFontString(nil, OVERLAY, "GameTooltipText");
+    record.playerName = record.playerName or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
     record.playerName:SetPoint("LEFT",record,"LEFT",0,0);
     record.playerName:SetText(record.playerInfo.playerName);
 
-    record.playerClassName = record:CreateFontString(nil, OVERLAY, "GameTooltipText");
-    record.playerClassName:SetPoint("LEFT",record,"LEFT",110,0);
+    record.playerClassName =  record.playerClassName or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
+    record.playerClassName:SetPoint("LEFT",record,"LEFT",4.2*self.recordHeight,0);
     record.playerClassName:SetText(record.playerInfo.playerClassName);
 
-    record.specName = record:CreateFontString(nil, OVERLAY, "GameTooltipText");
-    record.specName:SetPoint("LEFT",record,"LEFT",210,0);
+    record.specName = record.specName or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
+    record.specName:SetPoint("LEFT",record,"LEFT",8*self.recordHeight,0);
     record.specName:SetText(record.playerInfo.specName);
 
-    record.ilvl = record:CreateFontString(nil, OVERLAY, "GameTooltipText");
+    record.ilvl = record.ilvl or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
     record.ilvl:SetPoint("RIGHT",record,"RIGHT",0,0);
     record.ilvl:SetText(record.playerInfo.ilvl);
 
-    record.ddTexture = record:CreateTexture();
+    record.ddTexture = record.ddTexture or record:CreateTexture();
     record.ddTexture:SetSize(self.recordHeight,self.recordHeight);
     record.ddTexture:SetPoint("TOPLEFT", record ,"TOPLEFT", 12*self.recordHeight, 0);
     record.ddTexture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\dps]]);
 
-    record.hTexture = record:CreateTexture();
+    record.hTexture = record.hTexture or record:CreateTexture();
     record.hTexture:SetSize(self.recordHeight,self.recordHeight);
     record.hTexture:SetPoint("TOPLEFT", record ,"TOPLEFT", 13*self.recordHeight, 0);
     record.hTexture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\healer]]);
 
-    record.tTexture = record:CreateTexture();
+    record.tTexture = record.tTexture or record:CreateTexture();
     record.tTexture:SetSize(self.recordHeight,self.recordHeight);
     record.tTexture:SetPoint("TOPLEFT", record ,"TOPLEFT", 14*self.recordHeight, 0);
     record.tTexture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\tank]]);
 
-    if i == 1 then
-        record:SetPoint("TOPLEFT", E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent, "TOPLEFT", 5, -3);
+	if i == 1 then
+        record:SetPoint("TOPLEFT", E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent, "TOPLEFT", 0, 0);
+		record:SetPoint("TOPRIGHT", E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent, "TOPRIGHT", -35, 0);
     else
         record:SetPoint("TOPLEFT", E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i-1], "BOTTOMLEFT");
+		record:SetPoint("TOPRIGHT", E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i-1], "BOTTOMRIGHT");
     end
     record:Show();
+    E.GUI:CreateBackdrop(record);
+
 
     record:RegisterForClicks("AnyUp");
     record:SetScript("OnClick", function(self, click)
@@ -369,7 +373,7 @@ function E.GUI:CreateAssembleFrameRecord(i)
         -- InviteUnit(self.playerInfo.playerName)
         -- E.Core:ClearAssembleTableAtName(self.playerInfo.playerName)
         -- E.Core:Send
-        local position = self:GetPoint()
+        local position = self:GetPoint();
 
         menuList[1].arg1 = self.playerInfo;
         menuList[2].arg1 = self.playerInfo;
@@ -384,40 +388,27 @@ function E.GUI:CreateAssembleFrameRecord(i)
         --     }
         -- end
         if position:match("LEFT") then
-            EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame, "cursor", 0, 0, "MENU", 2)
+            EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame, "cursor", 0, 0, "MENU", 2);
         else
-            EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame, "cursor", -160, 0, "MENU", 2)
+            EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame, "cursor", -160, 0, "MENU", 2);
         end
     end)
     record:SetScript("OnEnter",function(self)
-        -- GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-        -- -- GameTooltip:SetPoint("LEFT",self,"RIGHT")
-        -- for _,v in pairs(self.raidInfo.instanceName) do
-        --     if E.Core:IsRaidInCD(v[1], self.raidInfo.size, v[2]) then
-        --         GameTooltip:AddDoubleLine(v[1], "есть кд", 1, 0, 0, 1, 0, 0)
-        --     else
-        --         GameTooltip:AddDoubleLine(v[1], "нет кд", 0, 1, 0, 0, 1, 0)
-        --     end
-        -- end
-        -- GameTooltip:AddLine(" ", 1, 1, 1)
-        -- GameTooltip:AddDoubleLine("Отправитель", self.raidInfo.rlName, 1, 1, 1, 1, 1, 0)
-        -- GameTooltip:AddDoubleLine("Подземелье", self.raidInfo.raidName, 1, 1, 1, 1, 1, 0)
-        -- GameTooltip:AddDoubleLine("Время", date("%Y-%m-%d %H:%M", self.raidInfo.lastSpamTime), 1, 1, 1, 1, 1, 0)
-        -- GameTooltip:AddLine(" ", 1, 1, 1)
-        -- GameTooltip:AddLine(" ", 1, 1, 1)
-        -- GameTooltip:AddDoubleLine("Сообщение", E.Core:SplitString(self.raidInfo.message, 50, "", ""), 1, 1, 1, 1, 0, 0)
-        -- GameTooltip:AddLine(" ", 1, 1, 1)
-        -- -- GameTooltip:AddDoubleLine("", "", 1, 1, 1, 1, 0, 0
-        -- -- GameTooltip:AddLine("", "", 1, 1, 1)
-        -- GameTooltip:Show()
+		if self.backdrop then
+            local class = select(2,UnitClass("player"));
+            self.backdrop:SetBackdropBorderColor(RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b)
+        end
     end)
     record:SetScript("OnLeave",function()
         GameTooltip:Hide();
+		if self.backdrop then
+            self.backdrop:SetBackdropBorderColor(0,0,0,1);
+        end
     end)
     function record:UpdatePlayerInfo(newTable)
         -- table.wipe(self.raidInfo)
         for k,v in pairs(newTable) do
-            self.playerInfo[k] = v
+            self.playerInfo[k] = v;
         end
         self:UpdateAll();
     end
@@ -431,19 +422,6 @@ function E.GUI:CreateAssembleFrameRecord(i)
         self.tTexture:SetShown(self.playerInfo.tank == 1);
     end
 
-    -- record:CreateBackdrop();
-    E.GUI:CreateBackdrop(record)
-    record:HookScript("OnEnter", function(frame)
-        if frame.backdrop then
-            local class = select(2,UnitClass("player"))
-            frame.backdrop:SetBackdropBorderColor(RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b)
-        end
-    end)
-	record:HookScript("OnLeave", function(frame)
-        if frame.backdrop then
-            frame.backdrop:SetBackdropBorderColor(0,0,0,1)
-        end
-    end)
 end
 
 function E.GUI:CreateAssembleFrame()
@@ -451,78 +429,92 @@ function E.GUI:CreateAssembleFrame()
     E.GUI.CollapseFrame.MainFrame.AssembleFrame = CreateFrame("Frame", nil, E.GUI.CollapseFrame.MainFrame);
     local AssembleFrame = E.GUI.CollapseFrame.MainFrame.AssembleFrame;
     -- AssembleFrame:CreateBackdrop("Transparent");
-    E.GUI:CreateBackdrop(AssembleFrame,"Transparent")
+    E.GUI:CreateBackdrop(AssembleFrame,"Transparent");
 
     AssembleFrame:SetAllPoints();
     -- local w,h = E.GUI.CollapseFrame.MainFrame:GetSize();
     -- AssembleFrame:SetSize(w,h-E.GUI.CollapseFrame.FrameWidth);
     AssembleFrame:Hide();
     AssembleFrame:SetScript("OnShow",function(self)
-        E.GUI:AssembleFrameInfoUpdate()
+        E.GUI:AssembleFrameInfoUpdate();
     end)
 
     E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent = CreateFrame("Frame", "RBAssembleFrameScrollParent", AssembleFrame);
-    local ScrollParent =  E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent
-    ScrollParent:SetPoint("TOPLEFT", AssembleFrame ,"TOPLEFT", 0, -E.GUI.CollapseFrame.FrameWidth)
-    ScrollParent:SetPoint("BOTTOMRIGHT", AssembleFrame ,"BOTTOMRIGHT", 0, 0)
+    local ScrollParent =  E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent;
+    ScrollParent:SetPoint("TOPLEFT", AssembleFrame ,"TOPLEFT", 0, -E.db.CollapseFrameHeight);
+    ScrollParent:SetPoint("BOTTOMRIGHT", AssembleFrame ,"BOTTOMRIGHT", 0, 0);
     E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records = {};
 
-    local SortPlayerName =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortPlayerName", E.Core.InvTable,"playerName",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 2, 0},true,nil)
-    SortPlayerName.fs:SetText(L["SortPlayerName"])
+    local SortPlayerName =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortPlayerName", E.Core.InvTable,"playerName",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 0, 0},true,nil)
+    SortPlayerName.fs:SetText(L["SortPlayerName"]);
     -- SortPlayerName:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortPlayerName, 4*self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortPlayerName, 4*self.recordHeight,  self.recordHeight);
 
     local SortClassName =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortClassName", E.Core.InvTable,"playerClassName",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 4.2*self.recordHeight, 0},true,nil)
-    SortClassName.fs:SetText(L["SortClassName"])
+    SortClassName.fs:SetText(L["SortClassName"]);
     -- SortClassName:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortClassName, 4*self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortClassName, 3*self.recordHeight,  self.recordHeight);
 
-    local SortSpecName =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortSpecName", E.Core.InvTable,"currentSpecName",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 8.2*self.recordHeight, 0},true,nil)
-    SortSpecName.fs:SetText(L["SortSpecName"])
+    local SortSpecName =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortSpecName", E.Core.InvTable,"currentSpecName",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 8*self.recordHeight, 0},true,nil)
+    SortSpecName.fs:SetText(L["SortSpecName"]);
     -- SortSpecName:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortSpecName, 4*self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortSpecName, 4*self.recordHeight,  self.recordHeight);
 
-    local SortDD =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortDD", E.Core.InvTable,"dd",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 12.1*self.recordHeight, 0},nil,true)
+    local SortDD =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortDD", E.Core.InvTable,"dd",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 12*self.recordHeight, 0},nil,true)
     SortDD.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\dps]]);
     -- SortDD:Size(self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortDD, self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortDD, self.recordHeight,  self.recordHeight);
 
-    local SortHeal =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortHeal", E.Core.InvTable,"heal",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 13.1*self.recordHeight, 0},nil,true)
+    local SortHeal =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame, "SortHeal", E.Core.InvTable,"heal",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 13*self.recordHeight, 0},nil,true)
     SortHeal.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\healer]]);
     -- SortHeal:Size(self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortHeal, self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortHeal, self.recordHeight,  self.recordHeight);
 
-    local SortTank =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortTank", E.Core.InvTable,"tank",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 14.1*self.recordHeight, 0},nil,true)
+    local SortTank =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortTank", E.Core.InvTable,"tank",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 14*self.recordHeight, 0},nil,true)
     SortTank.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\tank]]);
     -- SortTank:Size(self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortTank, self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortTank, self.recordHeight,  self.recordHeight);
 
-    local SortILVL =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortILVL", E.Core.InvTable,"ilvl",{"BOTTOMLEFT", ScrollParent ,"TOPLEFT", 16*self.recordHeight, 0},true,nil)
-    SortILVL.fs:SetText(L["SortILVL"])
+    local SortILVL =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortILVL", E.Core.InvTable,"ilvl",{"BOTTOMRIGHT", ScrollParent, "TOPRIGHT", -35, 0},true,nil)
+    SortILVL.fs:SetText(L["SortILVL"]);
     -- SortILVL:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortILVL, 4 * self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortILVL, 4 * self.recordHeight,  self.recordHeight);
 
     self.numLogRecordFrames = math.floor((ScrollParent:GetHeight() - 3) / self.recordHeight);
     E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame = CreateFrame("Frame", "RBMinimapClickMenu", UIParent, "UIDropDownMenuTemplate")
     for i = 1, self.numLogRecordFrames do
-        E.GUI:CreateAssembleFrameRecord(i)
+        E.GUI:CreateAssembleFrameRecord(i);
     end
 
     E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.ScrollBar = CreateFrame("ScrollFrame", "RBAssembleFrameScrollParentScrollBar", ScrollParent, "FauxScrollFrameTemplateLight")
     local ScrollBar = E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.ScrollBar
-    ScrollBar:SetWidth(ScrollParent:GetWidth() - 35)
-    ScrollBar:SetHeight(ScrollParent:GetHeight() - 10)
-    ScrollBar:SetPoint("RIGHT", ScrollParent, "RIGHT", -25, 0)
+    ScrollBar:SetWidth(ScrollParent:GetWidth() - 35);
+    ScrollBar:SetHeight(ScrollParent:GetHeight() - 10);
+    ScrollBar:SetPoint("RIGHT", ScrollParent, "RIGHT", -25, 0);
     ScrollBar:SetScript("OnVerticalScroll",function(self, value)
-        FauxScrollFrame_OnVerticalScroll(ScrollBar, value,  E.GUI.recordHeight,  E.GUI.AssembleFrameInfoUpdate)
+        FauxScrollFrame_OnVerticalScroll(ScrollBar, value,  E.GUI.recordHeight,  E.GUI.AssembleFrameInfoUpdate);
     end)
 
 
 end
 
+function E.GUI:UpdateAssembleFrame()
+	self.numLogRecordFrames = math.floor((E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent:GetHeight() - 3) / self.recordHeight);
+    for i = 1, #E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records do
+		if E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] then
+			E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i]:Hide();
+		end
+	end
+	for i = 1, self.numLogRecordFrames do
+        E.GUI:CreateAssembleFrameRecord(i);
+    end
+
+end
+
+
 function E.GUI:FirstTabInit()
-    E.GUI:CreateAssembleFrame()
-    E.GUI:AssembleFrameInfoUpdate()
+    E.GUI:CreateAssembleFrame();
+    E.GUI:AssembleFrameInfoUpdate();
 end
 
 
