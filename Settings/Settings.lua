@@ -2,6 +2,12 @@ local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 
 
+--gui
+P.CollapseFrameHeight = 30
+P.CollapseFrameWidth = 600
+
+P.MainFrameHeight = 600
+--
 
 P.tankCount = 1
 P.healCount = 1

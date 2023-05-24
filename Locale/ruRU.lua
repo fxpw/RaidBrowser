@@ -74,7 +74,14 @@ L["TimeToClearRaidsdesc"] = "Время между удалениями рейд
 L["timeToClearAssemble"] = "Время удаления запросов"
 L["timeToClearAssembledesc"] = "Время удаления запросов на добавление в группу в 1 вкладке"
 
+L["CollapseFrameWidth"] = "Длина главного и прилегающего окна"
+L["CollapseFrameWidthdesc"] = "Длина главного и прилегающего окна"
+L["CollapseFrameHeight"] = "Высота главного окна"
+L["CollapseFrameHeightdesc"] = "Высота главного окна"
+L["MainFrameHeight"] = "Высота прилегающего окна"
+L["MainFrameHeightdesc"] = "Высота прилегающего окна"
 
+L["Frame Change Size Tab"] = "Настройки окон"
 -- L["stopSpam"] = "Остановить"
 
 
