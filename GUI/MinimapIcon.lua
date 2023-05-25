@@ -2,7 +2,7 @@ local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local LDBIcon = E.Libs.LDBI
 local LDB = E.Libs.LDB
-local Callbacks = LDB.callbacks
+
 local colorFrame = CreateFrame("Frame");
 -- WeakAuras.frames["LDB Icon Recoloring"] = colorFrame;
 
@@ -12,13 +12,7 @@ local RBMinimapIcon
 
 -- function copied from LibDBIcon-1.0.lua
 local registered = false
-local function getAnchors(frame)
-	local x, y = frame:GetCenter()
-	if not x or not y then return "CENTER" end
-	local hHalf = (x > UIParent:GetWidth()*2/3) and "RIGHT" or (x < UIParent:GetWidth()/3) and "LEFT" or ""
-	local vHalf = (y > UIParent:GetHeight()/2) and "TOP" or "BOTTOM"
-	return vHalf..hHalf, frame, (vHalf == "TOP" and "BOTTOM" or "TOP")..hHalf
-end
+
 local Broker_RB;
 
 local indexRow = 0
@@ -48,8 +42,6 @@ colorFrame:SetScript("OnUpdate", function(self, elaps)
 	end
 	---left right top bottom
 
-
-
 end);
 
 
@@ -65,13 +57,9 @@ function E.GUI:InitMinimapIcon()
 			text = AddOnName,
 			icon = "Interface\\AddOns\\RaidBrowser\\Media\\test1.tga",
 			OnClick = function(self, button)
-			  if button == 'LeftButton' then
-				  E.GUI:ShowCollapseFrame()
-			  elseif(button == 'MiddleButton') then
-
-			  else
-
-			  end
+				if button == 'LeftButton' then
+					E.GUI:ShowCollapseFrame()
+				end
 
 			end,
 
