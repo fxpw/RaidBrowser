@@ -240,6 +240,10 @@ function E.GUI:HideCollapseFrame()
 end
 
 function E.GUI:ShowCollapseFrame()
+	if E.GUI.CollapseFrame:IsShown() then
+		E.GUI.CollapseFrame:Hide()
+		return
+	end
     E.GUI.CollapseFrame:Show()
     E.GUI:OpenTabFrameWhitIndex(E.db.LastTabIndex)
 end
