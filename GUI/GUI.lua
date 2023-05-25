@@ -75,7 +75,7 @@ function E.GUI:CreateSortButton(parent, name, tableForSort, paramName, pointner,
     E.GUI:CreateBackdrop(frame)
     if needFS then
         frame.fs = frame:CreateFontString(nil, OVERLAY, "GameTooltipText");
-        frame.fs:SetAllPoints();
+        frame.fs:SetPoint("CENTER",frame,"CENTER",0,0);
         frame.fs:SetText(L[name]);
     elseif needTexture then
         frame.texture = frame:CreateTexture();

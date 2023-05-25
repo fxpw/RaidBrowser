@@ -16,6 +16,8 @@
 	<Include file="Ace3\AceConsole-3.0\AceConsole-3.0.xml"/>
 	<Include file="Ace3\AceComm-3.0\AceComm-3.0.xml"/>
 	<Include file="Ace3\AceSerializer-3.0\AceSerializer-3.0.xml"/>
+	<Script file="LibDataBroker\LibDataBroker-1.1.lua"/>
+  	<Include file="LibDBIcon-1.0\lib.xml"/>
 
 	<!-- <Script file="Libs.lua"/> -->
 	<!-- <Include file="Libs.xml"/> -->

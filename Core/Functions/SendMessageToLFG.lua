@@ -55,7 +55,7 @@ function E.Core:SendLFGMsg()
 		if #(E.Core:GetLFGMsg()) > 255 then
 			return E.Core:Print("Слишком много символов в сообщении для отправки в чат")
 		end
-		if E.db.channelNumbers.c4 then
+		if E.db.ChannelNumbers.c4 then
 			if GetChannelName(4) > 1  then
 				if UnitFactionGroup("player") ~= "Renegade" then
 					local lang = ""
@@ -65,7 +65,7 @@ function E.Core:SendLFGMsg()
 				end
 			end
 		end
-		if E.db.channelNumbers.c5 then
+		if E.db.ChannelNumbers.c5 then
 			if select(2,GetChannelName(5)) then
 				local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(5)), "(A)") and "всеобщий" or lang
@@ -75,7 +75,7 @@ function E.Core:SendLFGMsg()
 				SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, 5)
 			end
 		end
-		if E.db.channelNumbers.c6 then
+		if E.db.ChannelNumbers.c6 then
 			if select(2,GetChannelName(6)) then
 				local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(6)), "(A)") and "всеобщий" or lang
@@ -85,7 +85,7 @@ function E.Core:SendLFGMsg()
 				SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, 6)
 			end
 		end
-		if E.db.channelNumbers.c7 then
+		if E.db.ChannelNumbers.c7 then
 			if select(2,GetChannelName(7)) then
 				local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(7)), "(A)") and "всеобщий" or lang

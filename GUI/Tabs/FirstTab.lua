@@ -183,7 +183,7 @@ E.GUI.Options.args.FirstTab = {
             type = "description",
             name = ""
         },
-        channelNumbers = {
+        ChannelNumbers = {
             order = 19,
             type = "multiselect",
             name = L["channelNumber"],
@@ -195,9 +195,9 @@ E.GUI.Options.args.FirstTab = {
                 c6 = L["ChannelName6"],
                 c7 = L["ChannelName7"],
             },
-            get = function(info, key) return E.db.channelNumbers[key] end,
+            get = function(info, key) return E.db.ChannelNumbers[key] end,
             set = function(info, key, value)
-                E.db.channelNumbers[key] = value
+                E.db.ChannelNumbers[key] = value
                 -- GameTooltip:Hide()
             end
         },
@@ -213,12 +213,12 @@ E.GUI.Options.args.FirstTab = {
             name = L["spamTime"],
             desc = L["spamTimedesc"],
         },
-        timeToClearAssemble = {
+        TimeToClearAssemble = {
             order = 22,
             type = "range",
             min = 35, max = 180, step = 1,
-            name = L["timeToClearAssemble"],
-            desc = L["timeToClearAssembledesc"],
+            name = L["TimeToClearAssemble"],
+            desc = L["TimeToClearAssembledesc"],
         },
         spacer6 = {
             order = 23,
@@ -478,7 +478,7 @@ function E.GUI:CreateAssembleFrame()
     local SortILVL =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.AssembleFrame,"SortILVL", E.Core.InvTable,"ilvl",{"BOTTOMRIGHT", ScrollParent, "TOPRIGHT", -35, 0},true,nil)
     SortILVL.fs:SetText(L["SortILVL"]);
     -- SortILVL:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortILVL, 4 * self.recordHeight,  self.recordHeight);
+    E.GUI:Size(SortILVL, 1.2 * self.recordHeight,  self.recordHeight);
 
     self.numLogRecordFrames = math.floor((ScrollParent:GetHeight() - 3) / self.recordHeight);
     E.GUI.CollapseFrame.MainFrame.AssembleFrame.MenuFrame = CreateFrame("Frame", "RBMinimapClickMenu", UIParent, "UIDropDownMenuTemplate")

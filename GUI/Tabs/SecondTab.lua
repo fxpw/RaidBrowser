@@ -153,6 +153,13 @@ function  E.GUI:CreateFindFrameRecord(i)
                 end
             }
         end
+		menuList[menuList[1].arg2.maxSpecs+1]={
+			text = L["Whisper"] .. " ".. menuList[1].arg1.rlName,
+			notCheckable = 1,
+			func = function()
+				ChatFrame_OpenChat(SLASH_WHISPER1.." "..menuList[1].arg1.rlName.." ")
+			end
+		}
         if position:match("LEFT") then
             EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.FindFrame.MenuFrame, "cursor", 0, 0, "MENU", 2);
         else
@@ -276,7 +283,7 @@ function E.GUI:CreateFindFrame()
     local SortILVL =  E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame,"SortILVL", E.Core.raidsTable, "ilvl",{"BOTTOMRIGHT", ScrollParent, "TOPRIGHT", -35, 0},true,nil)
     SortILVL.fs:SetText(L["SortILVL"])
     -- SortILVL:Size(4 * self.recordHeight,  self.recordHeight);
-    E.GUI:Size(SortILVL, 4 * self.recordHeight,  self.recordHeight)
+    E.GUI:Size(SortILVL, 1.2 * self.recordHeight,  self.recordHeight)
 
     self.numLogRecordFrames = math.floor((ScrollParent:GetHeight() - 3) / self.recordHeight);
     E.GUI.CollapseFrame.MainFrame.FindFrame.MenuFrame = CreateFrame("Frame", "RBMinimapClickMenu", UIParent, "UIDropDownMenuTemplate")
