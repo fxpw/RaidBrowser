@@ -74,6 +74,8 @@ do -- Libs
 	AddOn:AddLib("AceConfig", "AceConfig-3.0-ElvUI")
 	AddOn:AddLib("AceConfigDialog", "AceConfigDialog-3.0-ElvUI")
 	AddOn:AddLib("AceConfigRegistry", "AceConfigRegistry-3.0-ElvUI")
+	AddOn:AddLib("LDB", "LibDataBroker-1.1")
+	AddOn:AddLib("LDBI", "LibDBIcon-1.0-RB")
 end
 
 function AddOn:Initialize()
@@ -140,8 +142,12 @@ end
 
 local LoadUI = _G.CreateFrame("Frame")
 LoadUI:RegisterEvent("PLAYER_LOGIN")
-LoadUI:SetScript("OnEvent", function()
-	AddOn:Initialize()
+LoadUI:RegisterEvent("ADDON_LOADED")
+LoadUI:SetScript("OnEvent", function(self,event)
+	if(event == "PLAYER_LOGIN") then
+		AddOn:Initialize()
+		Engine[1].GUI:InitMinimapIcon()
+	end
 end)
 
 

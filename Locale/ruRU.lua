@@ -27,6 +27,7 @@ L["SendMSGToRL(spec8)"] = "Сообщение (spec8)"
 L["SendMSGToRL(spec9)"] = "Сообщение (spec9)"
 L["SendMSGToRL(spec10)"] = "Сообщение (spec10)"
 L["SendMSGToRL(current)"] = "Сообщение (текщий спек)"
+L["Whisper"] = "Шепот"
 L["AddToParty"] = "Добавить в группу"
 L["Delete"] = "Удалить"
 
@@ -71,8 +72,8 @@ L["History Raid Tab"] = "История"
 L["TimeToClearRaids"] = "Время удаления рейдов"
 L["TimeToClearRaidsdesc"] = "Время между удалениями рейдов из списка"
 
-L["timeToClearAssemble"] = "Время удаления запросов"
-L["timeToClearAssembledesc"] = "Время удаления запросов на добавление в группу в 1 вкладке"
+L["TimeToClearAssemble"] = "Время удаления запросов"
+L["TimeToClearAssembledesc"] = "Время удаления запросов на добавление в группу в 1 вкладке"
 
 L["CollapseFrameWidth"] = "Длина главного и прилегающего окна"
 L["CollapseFrameWidthdesc"] = "Длина главного и прилегающего окна"
@@ -82,6 +83,8 @@ L["MainFrameHeight"] = "Высота прилегающего окна"
 L["MainFrameHeightdesc"] = "Высота прилегающего окна"
 
 L["Frame Change Size Tab"] = "Настройки окон"
+L["DelayForAnimatedMinimapIcon"] = "Задержка обновления иконки на миникарте"
+L["DelayForAnimatedMinimapIcondesc"] = "Задержка обновления иконки на миникарте"
 -- L["stopSpam"] = "Остановить"
 
 

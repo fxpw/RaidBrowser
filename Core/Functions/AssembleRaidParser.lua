@@ -32,7 +32,7 @@ function E.Core:ClearAssembleTableAtTime()
     local currentTime = time()
     local tableindex = 1
     while E.Core.InvTable[tableindex] and E.Core.InvTable[tableindex].requestTime do
-        if (currentTime - E.Core.InvTable[tableindex].requestTime > E.db.timeToClearAssemble) then
+        if (currentTime - E.Core.InvTable[tableindex].requestTime > E.db.TimeToClearAssemble) then
             table.remove(E.Core.InvTable, tableindex)
         else
             tableindex = tableindex + 1
@@ -56,7 +56,7 @@ end
 function E.Core:CreateAssembleRaidFrame()
     E.Core.AssebleRaidUpdateFrame = CreateFrame("Frame")
     E.Core.AssebleRaidUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
-        if self.lastUpdate < time() - E.db.timeToClearAssemble then
+        if self.lastUpdate < time() - E.db.TimeToClearAssemble then
             self.lastUpdate = time();
             E.Core:ClearAssembleTableAtTime();
             E.GUI:AssembleFrameInfoUpdate()

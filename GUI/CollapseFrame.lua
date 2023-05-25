@@ -106,8 +106,8 @@ function E.GUI:CreateCollapseFrame()
     ShowFirstFrameTab.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\first]])
     ShowFirstFrameTab:Show();
 
-    ShowFirstFrameTab:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	ShowFirstFrameTab:HookScript("OnLeave", function(self)
+    ShowFirstFrameTab:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	ShowFirstFrameTab:SetScript("OnLeave", function(self)
         E.GUI.SetOriginalBackdrop(self)
         E.GUI:ChangeTabsGlow(E.db.LastTabIndex)
     end);
@@ -125,10 +125,11 @@ function E.GUI:CreateCollapseFrame()
     end);
     ShowSecondFrameTab.texture = ShowSecondFrameTab:CreateTexture()
     ShowSecondFrameTab.texture:SetAllPoints()
-    ShowSecondFrameTab.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\second]])
+    ShowSecondFrameTab.texture:SetTexture([[Interface\Buttons\UI-MicroButton-LFG-Up]])
+	ShowSecondFrameTab.texture:SetTexCoord(0.1,0.9,0.5,0.9)
     ShowSecondFrameTab:Show();
-    ShowSecondFrameTab:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	ShowSecondFrameTab:HookScript("OnLeave", function(self)
+    ShowSecondFrameTab:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	ShowSecondFrameTab:SetScript("OnLeave", function(self)
         E.GUI.SetOriginalBackdrop(self)
         E.GUI:ChangeTabsGlow(E.db.LastTabIndex)
     end);
@@ -148,8 +149,8 @@ function E.GUI:CreateCollapseFrame()
     ShowThirdFrameTab.texture:SetAllPoints()
     ShowThirdFrameTab.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\segment]])
     ShowThirdFrameTab:Show();
-    ShowThirdFrameTab:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	ShowThirdFrameTab:HookScript("OnLeave", function(self)
+    ShowThirdFrameTab:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	ShowThirdFrameTab:SetScript("OnLeave", function(self)
         E.GUI.SetOriginalBackdrop(self)
         E.GUI:ChangeTabsGlow(E.db.LastTabIndex)
     end);
@@ -168,8 +169,8 @@ function E.GUI:CreateCollapseFrame()
     -- CloseButton.texture:SetAllPoints()
     CloseButton.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\reset]])
     CloseButton:Show();
-    CloseButton:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	CloseButton:HookScript("OnLeave", E.GUI.SetOriginalBackdrop);
+    CloseButton:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	CloseButton:SetScript("OnLeave", E.GUI.SetOriginalBackdrop);
 
     CollapseFrame.OptionsButton = CreateFrame("Button",nil, E.GUI.CollapseFrame);
     local OptionsButton = CollapseFrame.OptionsButton
@@ -189,8 +190,8 @@ function E.GUI:CreateCollapseFrame()
     OptionsButton.texture = OptionsButton:CreateTexture()
     OptionsButton.texture:SetAllPoints()
     OptionsButton.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\config]])
-    OptionsButton:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	OptionsButton:HookScript("OnLeave", E.GUI.SetOriginalBackdrop);
+    OptionsButton:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	OptionsButton:SetScript("OnLeave", E.GUI.SetOriginalBackdrop);
 
     CollapseFrame.CollapseButton = CreateFrame("Button",nil, E.GUI.CollapseFrame);
     local  CollapseButton = CollapseFrame.CollapseButton
@@ -207,8 +208,8 @@ function E.GUI:CreateCollapseFrame()
     CollapseButton.texture:SetAllPoints()
     CollapseButton.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\minus]])
     E.GUI:CreateBackdrop(CollapseButton,"Transparent")
-    CollapseButton:HookScript("OnEnter", E.GUI.SetModifiedBackdrop);
-	CollapseButton:HookScript("OnLeave", E.GUI.SetOriginalBackdrop);
+    CollapseButton:SetScript("OnEnter", E.GUI.SetModifiedBackdrop);
+	CollapseButton:SetScript("OnLeave", E.GUI.SetOriginalBackdrop);
 end
 
 function E.GUI:UpdateCollapseFrame()

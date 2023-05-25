@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="GUI.lua"/>
+	<Script file="MinimapIcon.lua"/>
 	<Script file="CollapseFrame.lua"/>
 	<Script file="MainFrame.lua"/>
 	<Script file="Tabs\FirstTab.lua"/>

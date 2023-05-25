@@ -17,7 +17,7 @@ E.GUI.Options.args.FourTab = {
         CollapseFrameWidth = {
             order = 1,
             type = "range",
-            min = 550, max = 900, step = 1,
+            min = 475, max = 900, step = 1,
             name = L["CollapseFrameWidth"],
             desc = L["CollapseFrameWidthdesc"],
 		},
@@ -34,6 +34,13 @@ E.GUI.Options.args.FourTab = {
             min = 180, max = 755, step = 1, -- 190 min
             name = L["MainFrameHeight"],
             desc = L["MainFrameHeightdesc"],
+		},
+		DelayForAnimatedMinimapIcon = {
+            order = 4,
+            type = "range",
+            min = 0.01, max = 0.20, step = 0.01,
+            name = L["DelayForAnimatedMinimapIcon"],
+            desc = L["DelayForAnimatedMinimapIcondesc"],
 		},
 
 
