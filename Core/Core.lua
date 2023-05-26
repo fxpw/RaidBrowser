@@ -85,9 +85,12 @@ function E.Core:GetConfigDefaultSize()
 end
 
 function E.Core:Print(...)
+	DEFAULT_CHAT_FRAME:AddMessage(strjoin(" ", "|cff55FF00RaidBrowser|r:", ...))
+end
 
+function E.Core:DebugPrint(...)
 	if E.debug then
-		DEFAULT_CHAT_FRAME:AddMessage(strjoin(" ", "RB!: ", ...))
+		DEFAULT_CHAT_FRAME:AddMessage(strjoin(" ", "RBD!: ", ...))
 	end
 end
 function E.Core:ChangeDebug(boolParam)

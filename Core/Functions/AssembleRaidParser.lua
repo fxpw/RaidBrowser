@@ -9,7 +9,7 @@ local ReceiveRaidAsseblePrefix = "RB_RequestAddToRaid"
 
 local function ReceiveRequestAddToRaid(prefix, msg, dist, sender)
     local success, receivedPlayerData = E:Deserialize(msg)
-    E.Core:Print("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
+    E.Core:DebugPrint("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
 	if success then
 		if type(receivedPlayerData) == "table" then
 			table.insert(E.Core.InvTable, receivedPlayerData)
@@ -23,7 +23,7 @@ end
 function E.Core:SendRequestAddToRaid(target)
     local sendedPlayerData = E.Core:GetPlayerInfo()
     sendedPlayerData.requestTime = time()
-    E.Core:Print("SendRequestAddToRaid", target)
+    E.Core:DebugPrint("SendRequestAddToRaid", target)
     E:SendCommMessage(ReceiveRaidAsseblePrefix, E:Serialize(sendedPlayerData), "WHISPER", target);
 
 end

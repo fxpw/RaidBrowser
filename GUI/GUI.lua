@@ -154,6 +154,12 @@ function E.GUI:UpdateAllFramesSize()
 	-- MainFrame:SetSize(self.CollapseFrame.MainFrameHeight,self.CollapseFrame.CollapseFrameWidth);
 end
 
+function E.GUI:PrintHelp()
+	E.Core:Print(L["Use /rb"])
+	E.Core:Print(L["Use /rb minimap"])
+	E.Core:Print(L["Use /rb help"])
+end
+
 
 function E.GUI:ShowOptionsFrame()
     E.Libs.AceConfigDialog["Open"](E.Libs.AceConfigDialog, AddOnName)
@@ -172,7 +178,25 @@ function E.GUI:Init()
     self:SecondTabInit();
     self:ThirdTabInit();
     self:OptionsFrameInit();
-    SlashCmdList["RAIDBROWSER"] = E.GUI.ShowCollapseFrame
+    -- SlashCmdList["RAIDBROWSER"] = E.GUI.ShowCollapseFrame
+	function SlashCmdList.RAIDBROWSER(input)
+		local msg = nil
+		for v in string.gmatch(input, "%S+") do
+			if not msg then
+				msg = v
+			end
+		end
+		if msg == "help" then
+			E.GUI:PrintHelp()
+		elseif msg == "minimap" then
+			E.GUI:ToggleMinimapIcon()
+		elseif msg ~= nil then
+			E.Core:Print(L["UnknownCommand"])
+		else
+			E.GUI:ShowCollapseFrame()
+		end
+	  end
+
     LFRParentFrame:HookScript("OnShow",function(self) ToggleFrame(self) E.GUI:ShowCollapseFrame() end)
 end
 

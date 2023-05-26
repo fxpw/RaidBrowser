@@ -151,7 +151,6 @@ do
 			for i, k in ipairs(sortedlist) do
 				local f = GetContentLine()
 				f.text:SetText(k)
-				--print(k)
 				if k == self.value then
 					f.check:Show()
 				end
