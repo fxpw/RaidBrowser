@@ -82,6 +82,12 @@ L["CollapseFrameHeightdesc"] = "Высота главного окна"
 L["MainFrameHeight"] = "Высота прилегающего окна"
 L["MainFrameHeightdesc"] = "Высота прилегающего окна"
 
+L["|cffeda55fLeft-Click|rShowCollapseFrame"] = "|cffeda55fЛКМ|r открыть/закрыть окно"
+L["Use /rb"] = "/rb показавает/скрывает окно поиска"
+L["Use /rb minimap"] = "/rb minimap показавает/скрывает иконку у миникарты"
+L["Use /rb help"] = "Используй /rb help чтобы отобразить доступные команды"
+L["UnknownCommand"] = "Неизвестная команда, используйте /rb help чтобы посмотреть список всех доступных команд"
+
 L["Frame Change Size Tab"] = "Настройки окон"
 L["DelayForAnimatedMinimapIcon"] = "Задержка обновления иконки на миникарте"
 L["DelayForAnimatedMinimapIcondesc"] = "Задержка обновления иконки на миникарте"
