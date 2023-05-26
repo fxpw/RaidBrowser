@@ -181,6 +181,7 @@ function E.GUI:Init()
     -- SlashCmdList["RAIDBROWSER"] = E.GUI.ShowCollapseFrame
 	function SlashCmdList.RAIDBROWSER(input)
 		local msg = nil
+        input = input or ""
 		for v in string.gmatch(input, "%S+") do
 			if not msg then
 				msg = v
