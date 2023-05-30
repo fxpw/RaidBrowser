@@ -154,10 +154,10 @@ local function ChatParserFunc(self, event, message, sender, language)
 
     if E.Core:IsBlackListMSG(message) then return end
     if not E.Core:FindLFM(message) then return end
-    message = string.lower(message);
-    ilvl, message = E.Core:FindILVL(message);
 
+    ilvl, message = E.Core:FindILVL(message);
     message = E.Core:RemoveGarbage(message);
+	message = string.lower(message);
     raidInfo, message = E.Core:FindRaid(message);
 
     if string.find(message, 'нид все') then

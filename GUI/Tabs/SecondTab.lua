@@ -30,11 +30,12 @@ E.GUI.Options.args.SecondTab = {
 		},
     }
 }
-
+local _tempTable = {}
 local menuList = {
     {
 		text = L["SendMSGToRL(current)"],
 		notCheckable = 1,
+		arg1 = _tempTable,
 		func = function(self, arg1, arg2)
             SendChatMessage("RB!: Хочу в группу, я ".. arg2.ilvl.. " " .. arg2.playerClassName  .." " .. arg2.currentSpecName, "WHISPER", GetDefaultLanguage(), arg1.rlName);
             E.Core:SendRequestAddToRaid(arg1.rlName)
@@ -141,9 +142,11 @@ function  E.GUI:CreateFindFrameRecord(i)
     record:SetScript("OnClick", function(self, click)
         local position = self:GetPoint();
         -- E.GUI.CollapseFrame.MainFrame.FindFrame.MenuFrame.rlName = self.raidInfo.rlName
-        menuList[1].arg1 = self.raidInfo;
+		table.wipe(_tempTable)
+        _tempTable = table.copy(self.raidInfo);
+		menuList[1].arg1 = _tempTable;
         menuList[1].arg2 = E.Core:GetPlayerInfo();
-        for q = 1,menuList[1].arg2.maxSpecs do
+        for q = 1, menuList[1].arg2.maxSpecs do
             menuList[q+1]={
                 text = L["SendMSGToRL(spec"..q..")"],
                 notCheckable = 1,
@@ -343,7 +346,7 @@ end
 --             lastSpamTime =  time(),
 --             dd =  math.random(0,1),
 --             instanceName =  {{"Логово Магтеридона",2}, {"Испытание крестоносца",2}},
---             rlName =  "Шутка",
+--             rlName =   math.random(0,1) == 1 and "Шутка" or "Лекарня",
 --             patterns = { "table: 7C7BCC80"},
 --             size =  25,
 --             rlFaction = "Horde",
