@@ -32,8 +32,8 @@ function E.Core:GetLFGMsg()
 	if db.tankCount == 0 and db.healCount == 0 and db.ddCount == 0 then
 		msg  = msg .. " нид все "
 	else
-		local tanksMSG = (db.tankCount > 0 and db.tankCount.." танка" or "") .. (db.tankInfo ~= "" and (" ("..db.tankInfo..") ") or " ")
-		local healMSG = (db.healCount > 0 and db.healCount .." хила" or "") .. (db.healInfo ~= "" and (" ("..db.healInfo..") ") or " ")
+		local tanksMSG = (db.tankCount > 0 and db.tankCount.." танк(а)" or "") .. (db.tankInfo ~= "" and (" ("..db.tankInfo..") ") or " ")
+		local healMSG = (db.healCount > 0 and db.healCount .." хил(а)" or "") .. (db.healInfo ~= "" and (" ("..db.healInfo..") ") or " ")
 		local ddMSG = (db.ddCount > 0 and db.ddCount.." дд/рдд" or "") .. (db.ddInfo ~= "" and (" ("..db.ddInfo..") ") or " ")
 		msg = msg .. tanksMSG
 		msg = msg .. healMSG
