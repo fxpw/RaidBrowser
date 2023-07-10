@@ -83,7 +83,6 @@ E.Patterns.Raids = {
         patterns = {
 			"м"..csep.."г"..csep.."25"..csep.."об",
             "м"..csep.."г"..csep.."об",
-			"мг"..csep.."об",
             "г"..csep.."м"..csep.."об",
             "м"..csep.."и"..csep.."г"..csep.."об",
             "м"..csep.."и"..csep.."г",
@@ -157,6 +156,8 @@ E.Patterns.Raids = {
 		size = 25,
 		difficulty = 4,
 		patterns = {
+			"магик"..csep.."25"..csep.."хм",
+			"магик"..csep.."25"..csep.."гер",
             "магик"..csep.."хм",
             "магик"..csep.."гер",
             -- "м"..csep.."хм",
@@ -178,6 +179,7 @@ E.Patterns.Raids = {
 		size = 25,
 		difficulty = 1,
 		patterns = {
+			"магик"..csep.."25"..csep.."об",
             "магик"..csep.."об",
             "магик",
             "только"..csep.."магик",

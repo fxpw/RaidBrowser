@@ -44,9 +44,9 @@ local menuList = {
 }
 
 local factionToTexture = {
-    ["Alliance"]= [[Interface\AddOns\RaidBrowser\Media\Textures\all]],
-    ["Horde"]= [[Interface\AddOns\RaidBrowser\Media\Textures\hor]],
-    ["Renegade"]= [[Interface\AddOns\RaidBrowser\Media\Textures\ren]],
+    ["Alliance"] = [[Interface\AddOns\RaidBrowser\Media\Textures\all]],
+    ["Horde"] = [[Interface\AddOns\RaidBrowser\Media\Textures\hor]],
+    ["Renegade"] = [[Interface\AddOns\RaidBrowser\Media\Textures\ren]],
 }
 
 function E.GUI:FindFrameRaidInfoUpdate()
