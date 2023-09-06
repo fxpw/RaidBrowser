@@ -30,7 +30,7 @@ function E.Core:GetLFGMsg()
 	end
 	msg = msg .. E.dungeonsForOptions[db.selectedRaid] .. " нужны "
 	if db.tankCount == 0 and db.healCount == 0 and db.ddCount == 0 then
-		msg  = msg .. " нид все "
+		msg  = msg .. " все "
 	else
 		local tanksMSG = (db.tankCount > 0 and db.tankCount.." танк(а)" or "") .. (db.tankInfo ~= "" and (" ("..db.tankInfo..") ") or " ")
 		local healMSG = (db.healCount > 0 and db.healCount .." хил(а)" or "") .. (db.healInfo ~= "" and (" ("..db.healInfo..") ") or " ")
