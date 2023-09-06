@@ -35,17 +35,12 @@ local function max_of(t)
 	return index, result;
 end
 
-
-
 local function GetAllSpecInfo()
 	-- local tableForReturn = {}
 	local SpecInfoCache = C_Talent.GetSpecInfoCache()
 	local tableForReturn = SpecInfoCache.talentGroupData
     return tableForReturn;
 end
-
-
-
 
 local function GetActiveSpecIndex()
 	local indices = transform({1, 2, 3}, GetTalentTabPoints)
@@ -56,7 +51,6 @@ end
 local function GetActiveSpecName()
 	return GetTalentTabInfo(GetActiveSpecIndex());
 end
-
 
 function E.Core:PlayerIsHeal()
 	return math.random(1,2) == 2
@@ -71,9 +65,7 @@ function E.Core:PlayerIsDD()
 	return math.random(1,2) == 2
 end
 
-
 function E.Core:GetPlayerInfo()
-
 	table.wipe(E.Core.PlayerInfo)
     E.Core.PlayerInfo.playerClassName = UnitClass("player");
     E.Core.PlayerInfo.playerName = UnitName("player");

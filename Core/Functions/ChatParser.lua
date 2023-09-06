@@ -222,6 +222,5 @@ end
 function E.Core:InitChatParser()
     E.Core:CreateChatParserFrame();
     E.Core:CreateUpdateRaidFrame();
-
 end
 
