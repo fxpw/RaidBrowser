@@ -209,7 +209,7 @@ function  E.GUI:CreateFindFrameRecord(i)
         self:UpdateAll();
     end
     function record:UpdateAll()
-        self.rlName:SetText(self.raidInfo.rlName);
+        self.rlName:SetText("|c"..(self.raidInfo.rlColor or "ffffffff")..self.raidInfo.rlName);
 
         local _,cdColor = E.Core:GetCDInfo(self.raidInfo)
         local raidName = cdColor .. self.raidInfo.raidName
