@@ -57,7 +57,7 @@ do -- override
 			local strForInsert = string.format("|Hrb:inv:%s|h[Вступить в рейд к %s]|h", sender, sender)
 			C_Timer:After(0,function()
 				if chatframe and chatframe.messageTypeList then
-					for k,v in pairs(chatframe.channelList) do
+					for _,v in pairs(chatframe.channelList) do
 						if v:lower():find("поиск") then
 							chatframe:AddMessage(strForInsert, 0.41, 0.8, 0.94)
 							break
