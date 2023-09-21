@@ -97,7 +97,7 @@ function E.Core:SendLFGMsg()
 		end
 		-- print(123)
 		-- print(E.Core:GetLFGMsg(), "CHANNEL", lang, channel)
-		SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", nil, channel)
+		SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, channel)
 		E.Core.CanSendMessage = false
 		E.Core.SendMessageFrame.lastSpam = time()
 	end
