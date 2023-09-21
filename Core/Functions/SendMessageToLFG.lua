@@ -53,10 +53,7 @@ do -- override
 		end
 	end
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", function(chatframe, event, msg, sender, ...)
-		-- print(msg,...)
 		if msg:find("RB!") then
-			-- print(msg,...)
-			print(chatframe:GetName())
 			local strForInsert = string.format("|Hrb:inv:%s|h[Вступить в рейд к %s]|h", sender, sender)
 			C_Timer:After(0,function()
 				if chatframe and chatframe.messageTypeList then
