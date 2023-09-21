@@ -1,7 +1,6 @@
 local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
-
-
+local C_Talent = C_Talent
 E.Core.CanSendMessage = false
 E.Core.IsNeedSendMessage = false
 -- /run local a = GetFixedLink function GetFixedLink(...) print(...) return a(...) end
@@ -10,7 +9,6 @@ E.Core.IsNeedSendMessage = false
 function E.Core:GetLFGMsg()
 	local db = E.db
 	local msg = ""
-
 	if string.find(E.dungeonsForOptions[db.selectedRaid],"ilvl") then
 		return "Выберите другой рейд"
 	end
@@ -34,17 +32,58 @@ function E.Core:GetLFGMsg()
 		msg = msg .. healMSG
 		msg = msg .. ddMSG
 	end
-
 	local ilvlMSG = ("от "..db.ilvlCount.." ilvl") .. (db.ilvlInfo ~= "" and (" ("..db.ilvlInfo..") ") or " ")
 	msg = msg .. ilvlMSG
-
 	local anrollMSG = (db.anrolCount > 0 and (db.anrolCount .. " a") or "") .. (db.anrolInfo ~= "" and (" (" .. db.anrolInfo .. ") ") or " ")
 	msg = msg .. anrollMSG
-
 	msg = msg .. db.addedInfo
-	return msg
+	return msg .. " RB!"
 end
+do -- override
+	_G.msgNeedSend = false
+	local _SetItemRef = SetItemRef
+	function SetItemRef(link, textref, button, chatFrame)
+		-- print(link, textref, button, chatFrame);
+		if link:match("rb:inv") then
+			E.Core:ClickToInvButton(link);
+		-- elseif link:match("elvm:ignore") then
+			-- AddToIgnore(chatFrame,link);
+		else
+			_SetItemRef(link, textref, button, chatFrame);
+		end
+	end
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", function(chatframe, event, msg, sender, ...)
+		-- print(msg,...)
+		if msg:find("RB!") then
+			-- print(msg,...)
+			print(chatframe:GetName())
+			local strForInsert = string.format("|Hrb:inv:%s|h[Вступить в рейд к %s]|h", sender, sender)
+			C_Timer:After(0,function()
+				if chatframe and chatframe.messageTypeList then
+					for k,v in pairs(chatframe.channelList) do
+						if v:lower():find("поиск") then
+							chatframe:AddMessage(strForInsert, 0.41, 0.8, 0.94)
+							break
+						end
+					end
+				end
+			end)
+			return false, msg, sender, ...
+		end
+	end)
+end
+function E.Core:ClickToInvButton(link)
+	local _,_, rlName = strsplit(":", link);
+	-- print(_,_, rlName)
+	local playerInfo = E.Core:GetPlayerInfo()
+	SendChatMessage("RB!: Хочу в группу, я " ..playerInfo.playerClassName  .. " " .. E.Core:GetSpecNameFromTalents(C_Talent.GetSpecInfoCache().activeTalentGroup), "WHISPER", GetDefaultLanguage(), rlName);
+	E.Core:SendRequestAddToRaid(rlName)
 
+end
+-- function E.Core:CreateEnterButtonForChat()
+-- 	local button = string.format("|Hrb:inv:%1$s|h|cff3588ff[Вступить]|r|h",UnitName("player"))
+-- 	return button, #button
+-- end
 function E.Core:SendLFGMsg()
 	if E.Core.CanSendMessage and E.Core.IsNeedSendMessage then
 		if #(E.Core:GetLFGMsg()) > 255 then
@@ -95,8 +134,6 @@ function E.Core:SendLFGMsg()
 				channel = "7"
 			end
 		end
-		-- print(123)
-		-- print(E.Core:GetLFGMsg(), "CHANNEL", lang, channel)
 		SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, channel)
 		E.Core.CanSendMessage = false
 		E.Core.SendMessageFrame.lastSpam = time()
