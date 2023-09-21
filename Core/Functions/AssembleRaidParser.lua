@@ -12,6 +12,12 @@ local function ReceiveRequestAddToRaid(prefix, msg, dist, sender)
     E.Core:DebugPrint("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
 	if success then
 		if type(receivedPlayerData) == "table" then
+			for k,v in pairs(E.Core.InvTable) do
+				if v.playerName == receivedPlayerData.playerName then
+					E.Core.InvTable[k] = receivedPlayerData
+					return
+				end
+			end
 			table.insert(E.Core.InvTable, receivedPlayerData)
 			E.GUI:AssembleFrameInfoUpdate()
 		end
@@ -25,7 +31,6 @@ function E.Core:SendRequestAddToRaid(target)
     sendedPlayerData.requestTime = time()
     E.Core:DebugPrint("SendRequestAddToRaid", target)
     E:SendCommMessage(ReceiveRaidAsseblePrefix, E:Serialize(sendedPlayerData), "WHISPER", target);
-
 end
 
 function E.Core:ClearAssembleTableAtTime()
@@ -40,7 +45,6 @@ function E.Core:ClearAssembleTableAtTime()
     end
 end
 
-
 function E.Core:ClearAssembleTableAtName(name)
     -- local currentTime = time()
     local tableindex = 1
@@ -53,6 +57,7 @@ function E.Core:ClearAssembleTableAtName(name)
     end
     E.GUI:AssembleFrameInfoUpdate()
 end
+
 function E.Core:CreateAssembleRaidFrame()
     E.Core.AssebleRaidUpdateFrame = CreateFrame("Frame")
     E.Core.AssebleRaidUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
