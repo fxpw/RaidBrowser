@@ -14,15 +14,15 @@ function E.Core:GetLFGMsg()
 	if string.find(E.dungeonsForOptions[db.selectedRaid],"ilvl") then
 		return "Выберите другой рейд"
 	end
-	local selectedRaidMSG = db.selectedRaid
+	-- local selectedRaidMSG = db.selectedRaid
 	local type1,type2,type3 = unpack(E.dungeonsForSpam[db.selectedRaid])
 	if not type1 or not type2 or not type3 then
 		return "Выберите другой рейд"
 	end
 	-- " \124cffffff00\124Hquest:99:15\124h[Arugal's Folly]\124h\124r"
 	-- /run print(" \124cffffff00\124Hquest:22387:15\124h[Arugal's Folla]\124h\124r")
-	selectedRaidMSG = string.format("\124cffffff00\124H%s:%s\124h[%s]\124h\124r",type1,type2,type3)
-	print(selectedRaidMSG)
+	local selectedRaidMSG = string.format("\124cffffff00\124H%s:%s\124h[%s]\124h\124r",type1,type2,type3)
+	-- print(selectedRaidMSG)
 	msg = msg .. selectedRaidMSG .. " нужны "
 	if db.tankCount == 0 and db.healCount == 0 and db.ddCount == 0 then
 		msg  = msg .. " все "
