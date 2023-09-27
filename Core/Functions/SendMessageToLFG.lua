@@ -87,11 +87,12 @@ function E.Core:SendLFGMsg()
 			return E.Core:Print("Слишком много символов в сообщении для отправки в чат")
 		end
 		local lang = "всеобщий"
+		lang = UnitFactionGroup("player") == "Alliance" and "всеобщий" or lang
+		lang = UnitFactionGroup("player") == "Horde" and "орочий" or lang
 		local channel = 4
 		if E.db.ChannelNumbers.c4 then
 			if GetChannelName(4) > 1  then
 				if UnitFactionGroup("player") ~= "Renegade" then
-					-- local lang = ""
 					lang = UnitFactionGroup("player") == "Alliance" and "всеобщий" or lang
 					lang = UnitFactionGroup("player") == "Horde" and "орочий" or lang
 					channel = "4"
@@ -100,34 +101,22 @@ function E.Core:SendLFGMsg()
 		end
 		if E.db.ChannelNumbers.c5 then
 			if select(2,GetChannelName(5)) then
-				-- local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(5)), "(A)") and "всеобщий" or lang
 				lang = string.find(select(2,GetChannelName(5)), "(О)") and "орочий" or lang
-				-- if string.find(select(2,GetChannelName(5)), "(A)")  then
-				-- 	local lang = UnitFactionGroup("player") == "Alliance" and "всеобщий" or "орочий"
-				-- SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, 5)
 				channel = "5"
 			end
 		end
 		if E.db.ChannelNumbers.c6 then
 			if select(2,GetChannelName(6)) then
-				-- local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(6)), "(A)") and "всеобщий" or lang
 				lang = string.find(select(2,GetChannelName(6)), "(О)") and "орочий" or lang
-				-- if string.find(select(2,GetChannelName(5)), "(A)")  then
-				-- 	local lang = UnitFactionGroup("player") == "Alliance" and "всеобщий" or "орочий"
-				-- SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, 6)
 				channel = "6"
 			end
 		end
 		if E.db.ChannelNumbers.c7 then
 			if select(2,GetChannelName(7)) then
-				-- local lang = "всеобщий"
 				lang = string.find(select(2,GetChannelName(7)), "(A)") and "всеобщий" or lang
 				lang = string.find(select(2,GetChannelName(7)), "(О)") and "орочий" or lang
-				-- if string.find(select(2,GetChannelName(5)), "(A)")  then
-				-- 	local lang = UnitFactionGroup("player") == "Alliance" and "всеобщий" or "орочий"
-				-- SendChatMessage(E.Core:GetLFGMsg(), "CHANNEL", lang, 7)
 				channel = "7"
 			end
 		end
