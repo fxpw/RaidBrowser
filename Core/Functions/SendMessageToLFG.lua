@@ -52,22 +52,22 @@ do -- override
 			_SetItemRef(link, textref, button, chatFrame);
 		end
 	end
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", function(chatframe, event, msg, sender, ...)
-		if msg:find("RB!") then
-			local strForInsert = string.format("|Hrb:inv:%s|h[Вступить в рейд к %s]|h", sender, sender)
-			C_Timer:After(0,function()
-				if chatframe and chatframe.messageTypeList then
-					for _,v in pairs(chatframe.channelList) do
-						if v:lower():find("поиск") then
-							chatframe:AddMessage(strForInsert, 0.41, 0.8, 0.94)
-							break
-						end
-					end
-				end
-			end)
-			return false, msg, sender, ...
-		end
-	end)
+	-- ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", function(chatframe, event, msg, sender, ...)
+	-- 	if msg:find("RB!") then
+	-- 		local strForInsert = string.format("|Hrb:inv:%s|h[Вступить в рейд к %s]|h", sender, sender)
+	-- 		C_Timer:After(0,function()
+	-- 			if chatframe and chatframe.messageTypeList then
+	-- 				for _,v in pairs(chatframe.channelList) do
+	-- 					if v:lower():find("поиск") then
+	-- 						chatframe:AddMessage(strForInsert, 0.41, 0.8, 0.94)
+	-- 						break
+	-- 					end
+	-- 				end
+	-- 			end
+	-- 		end)
+	-- 		return false, msg, sender, ...
+	-- 	end
+	-- end)
 end
 function E.Core:ClickToInvButton(link)
 	local _,_, rlName = strsplit(":", link);
