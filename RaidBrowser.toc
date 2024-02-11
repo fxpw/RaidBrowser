@@ -6,7 +6,7 @@
 ## Author: fxpw
 ## SavedVariables: RaidBrowserDB, RaidBrowserPrivateDB
 ## SavedVariablesPerCharacter: RaidBrowserCharacterDB
-
+## X-Sirus-Update: https://github.com/fxpw/RaidBrowser
 Libs\Libs.xml
 Tools.lua
 Init.lua
