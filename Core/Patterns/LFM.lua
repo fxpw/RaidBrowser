@@ -8,20 +8,20 @@ local sep_chars = "%s-_,.<>%*)(/#+&x*"
 local sep = "[" .. sep_chars .. "]";
 
 -- Kleene closure of sep.
-local csep = sep.."*";
+local csep = sep .. "*";
 
 -- Positive closure of sep.
 -- local psep = sep.."+";
 E.Patterns.LFM = {
-    'нид',
-    'нужны',
-    'нужен',
-    'надо',
-    'на'..csep..'фул',
-    'рег',
-    'все',
-    'дпс++',
-    'дд',
-    'хил',
-    'танк',
+	'нид',
+	'нужны',
+	'нужен',
+	'надо',
+	'на' .. csep .. 'фул',
+	'рег',
+	'все',
+	'дпс++',
+	'дд',
+	'хил',
+	'танк',
 }

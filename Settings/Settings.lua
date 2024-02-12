@@ -33,12 +33,11 @@ P.LastTabIndex = 2
 P.IsMainFrameShown = true
 P.ShowWhoMessages = false
 P.ChannelNumbers = {
-    -- ["1"] = "1",
-    -- ["2"] = "2",
-    -- ["3"] = "3",
-    ["4"] = false,
-    ["5"] = false,
-    ["6"] = false,
-    ["7"] = false,
+	-- ["1"] = "1",
+	-- ["2"] = "2",
+	-- ["3"] = "3",
+	["4"] = false,
+	["5"] = false,
+	["6"] = false,
+	["7"] = false,
 }
-

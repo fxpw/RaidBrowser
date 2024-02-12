@@ -92,5 +92,3 @@ L["Frame Change Size Tab"] = "Настройки окон"
 L["DelayForAnimatedMinimapIcon"] = "Задержка обновления иконки на миникарте"
 L["DelayForAnimatedMinimapIcondesc"] = "Задержка обновления иконки на миникарте"
 -- L["stopSpam"] = "Остановить"
-
-

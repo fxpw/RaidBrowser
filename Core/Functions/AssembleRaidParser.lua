@@ -8,11 +8,11 @@ local ReceiveRaidAsseblePrefix = "RB_RequestAddToRaid"
 
 
 local function ReceiveRequestAddToRaid(prefix, msg, dist, sender)
-    local success, receivedPlayerData = E:Deserialize(msg)
-    E.Core:DebugPrint("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
+	local success, receivedPlayerData = E:Deserialize(msg)
+	E.Core:DebugPrint("ReceiveRequestAddToRaid", prefix, msg, dist, sender)
 	if success then
 		if type(receivedPlayerData) == "table" then
-			for k,v in pairs(E.Core.InvTable) do
+			for k, v in pairs(E.Core.InvTable) do
 				if v.playerName == receivedPlayerData.playerName then
 					E.Core.InvTable[k] = receivedPlayerData
 					return
@@ -23,58 +23,56 @@ local function ReceiveRequestAddToRaid(prefix, msg, dist, sender)
 		end
 	end
 
-    -- E.Core:Print("ReceiveRequestAddToRaid",text, distribution, target)
+	-- E.Core:Print("ReceiveRequestAddToRaid",text, distribution, target)
 end
 
 function E.Core:SendRequestAddToRaid(target)
-    local sendedPlayerData = E.Core:GetPlayerInfo()
-    sendedPlayerData.requestTime = time()
-    E.Core:DebugPrint("SendRequestAddToRaid", target)
-    E:SendCommMessage(ReceiveRaidAsseblePrefix, E:Serialize(sendedPlayerData), "WHISPER", target);
+	local sendedPlayerData = E.Core:GetPlayerInfo()
+	sendedPlayerData.requestTime = time()
+	E.Core:DebugPrint("SendRequestAddToRaid", target)
+	E:SendCommMessage(ReceiveRaidAsseblePrefix, E:Serialize(sendedPlayerData), "WHISPER", target);
 end
 
 function E.Core:ClearAssembleTableAtTime()
-    local currentTime = time()
-    local tableindex = 1
-    while E.Core.InvTable[tableindex] and E.Core.InvTable[tableindex].requestTime do
-        if (currentTime - E.Core.InvTable[tableindex].requestTime > E.db.TimeToClearAssemble) then
-            table.remove(E.Core.InvTable, tableindex)
-        else
-            tableindex = tableindex + 1
-        end
-    end
+	local currentTime = time()
+	local tableindex = 1
+	while E.Core.InvTable[tableindex] and E.Core.InvTable[tableindex].requestTime do
+		if (currentTime - E.Core.InvTable[tableindex].requestTime > E.db.TimeToClearAssemble) then
+			table.remove(E.Core.InvTable, tableindex)
+		else
+			tableindex = tableindex + 1
+		end
+	end
 end
 
 function E.Core:ClearAssembleTableAtName(name)
-    -- local currentTime = time()
-    local tableindex = 1
-    while E.Core.InvTable[tableindex] and E.Core.InvTable[tableindex].playerName do
-        if (E.Core.InvTable[tableindex].playerName == name) then
-            table.remove(E.Core.InvTable, tableindex)
-        else
-            tableindex = tableindex + 1
-        end
-    end
-    E.GUI:AssembleFrameInfoUpdate()
+	-- local currentTime = time()
+	local tableindex = 1
+	while E.Core.InvTable[tableindex] and E.Core.InvTable[tableindex].playerName do
+		if (E.Core.InvTable[tableindex].playerName == name) then
+			table.remove(E.Core.InvTable, tableindex)
+		else
+			tableindex = tableindex + 1
+		end
+	end
+	E.GUI:AssembleFrameInfoUpdate()
 end
 
 function E.Core:CreateAssembleRaidFrame()
-    E.Core.AssebleRaidUpdateFrame = CreateFrame("Frame")
-    E.Core.AssebleRaidUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
-        if self.lastUpdate < time() - E.db.TimeToClearAssemble then
-            self.lastUpdate = time();
-            E.Core:ClearAssembleTableAtTime();
-            E.GUI:AssembleFrameInfoUpdate()
-        end
-    end)
-    E.Core.AssebleRaidUpdateFrame.lastUpdate = time();
+	E.Core.AssebleRaidUpdateFrame = CreateFrame("Frame")
+	E.Core.AssebleRaidUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
+		if self.lastUpdate < time() - E.db.TimeToClearAssemble then
+			self.lastUpdate = time();
+			E.Core:ClearAssembleTableAtTime();
+			E.GUI:AssembleFrameInfoUpdate()
+		end
+	end)
+	E.Core.AssebleRaidUpdateFrame.lastUpdate = time();
 end
 
-
-
 function E.Core:AssebleRaidParserInit()
-    E.Core:CreateAssembleRaidFrame();
-    E:RegisterComm(ReceiveRaidAsseblePrefix,ReceiveRequestAddToRaid);
+	E.Core:CreateAssembleRaidFrame();
+	E:RegisterComm(ReceiveRaidAsseblePrefix, ReceiveRequestAddToRaid);
 end
 
 -- /dump TestRequest1("Chozik")
