@@ -24,7 +24,7 @@ local function transform(values, fn)
 end
 
 local function max_of(t)
-    local result = -math.huge;
+	local result = -math.huge;
 	local index = 1;
 	for i, v in ipairs(t) do
 		if v and v > result then
@@ -39,11 +39,11 @@ local function GetAllSpecInfo()
 	-- local tableForReturn = {}
 	local SpecInfoCache = C_Talent.GetSpecInfoCache()
 	local tableForReturn = SpecInfoCache.talentGroupData
-    return tableForReturn;
+	return tableForReturn;
 end
 
 local function GetActiveSpecIndex()
-	local indices = transform({1, 2, 3}, GetTalentTabPoints)
+	local indices = transform({ 1, 2, 3 }, GetTalentTabPoints)
 	local i, _ = max_of(indices);
 	return i;
 end
@@ -53,37 +53,34 @@ local function GetActiveSpecName()
 end
 
 function E.Core:PlayerIsHeal()
-	return math.random(1,2) == 2
+	return math.random(1, 2) == 2
 end
 
 function E.Core:PlayerIsTank()
-	return math.random(1,2) == 2
+	return math.random(1, 2) == 2
 end
 
-
 function E.Core:PlayerIsDD()
-	return math.random(1,2) == 2
+	return math.random(1, 2) == 2
 end
 
 function E.Core:GetPlayerInfo()
 	table.wipe(E.Core.PlayerInfo)
-    E.Core.PlayerInfo.playerClassName = UnitClass("player");
-    E.Core.PlayerInfo.playerName = UnitName("player");
-    E.Core.PlayerInfo.ilvl = ItemLevelMixIn:GetItemLevel(UnitGUID("player"));
-    E.Core.PlayerInfo.specInfo = GetAllSpecInfo();
-    E.Core.PlayerInfo.currentSpecName = GetActiveSpecName();
+	E.Core.PlayerInfo.playerClassName = UnitClass("player");
+	E.Core.PlayerInfo.playerName = UnitName("player");
+	E.Core.PlayerInfo.ilvl = ItemLevelMixIn:GetItemLevel(UnitGUID("player"));
+	E.Core.PlayerInfo.specInfo = GetAllSpecInfo();
+	E.Core.PlayerInfo.currentSpecName = GetActiveSpecName();
 	E.Core.PlayerInfo.maxSpecs = C_Talent.GetNumTalentGroups();
 	E.Core.PlayerInfo.heal = E.Core:PlayerIsHeal();
 	E.Core.PlayerInfo.dd = E.Core:PlayerIsDD();
 	E.Core.PlayerInfo.tank = E.Core:PlayerIsTank();
 	E.Core.PlayerInfo.myFaction = UnitFactionGroup("player");
-    return E.Core.PlayerInfo;
+	return E.Core.PlayerInfo;
 end
-
 
 function E.Core:GetSpecNameFromTalents(specId)
 	local specInfo = E.Core:GetPlayerInfo().specInfo;
-	local i,_ =  max_of(specInfo[specId]);
+	local i, _ = max_of(specInfo[specId]);
 	return GetTalentTabInfo(i);
 end
-

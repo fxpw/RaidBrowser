@@ -8,14 +8,15 @@ local AddOnName, Engine = ...
 local AceAddon, AceAddonMinor = _G.LibStub("AceAddon-3.0")
 local CallbackHandler = _G.LibStub("CallbackHandler-1.0")
 
-local AddOn = AceAddon:NewAddon(AddOnName, "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceHook-3.0", "AceComm-3.0", "AceSerializer-3.0")
+local AddOn = AceAddon:NewAddon(AddOnName, "AceConsole-3.0", "AceEvent-3.0", "AceTimer-3.0", "AceHook-3.0", "AceComm-3.0",
+	"AceSerializer-3.0")
 AddOn.Callbacks = AddOn.Callbacks or CallbackHandler:New(AddOn)
-AddOn.Core = AddOn.Core  or {}
+AddOn.Core = AddOn.Core or {}
 AddOn.Patterns = AddOn.Patterns or {}
 AddOn.Func = AddOn.Func or {}
 AddOn.GUI = AddOn.GUI or {}
-AddOn.GUI.Options = {type = "group", name = AddOnName.. " Options", childGroups = "tab", args = {}}
-AddOn.DF = {profile = {}, global = {}}; AddOn.privateVars = {profile = {}} -- Defaults
+AddOn.GUI.Options = { type = "group", name = AddOnName .. " Options", childGroups = "tab", args = {} }
+AddOn.DF = { profile = {}, global = {} }; AddOn.privateVars = { profile = {} } -- Defaults
 AddOn.debug = false
 Engine[1] = AddOn
 Engine[2] = {}
@@ -36,9 +37,10 @@ do -- Libs
 			self.Libs[name], self.LibsMinor[name] = _G.LibStub(major, minor)
 		end
 	end
+
 	AddOn:AddLib("AceAddon", AceAddon, AceAddonMinor)
 	AddOn:AddLib("AceDB", "AceDB-3.0")
-    AddOn:AddLib("ACL", "AceLocale-3.0-RB")
+	AddOn:AddLib("ACL", "AceLocale-3.0-RB")
 	AddOn:AddLib("AceGUI", "AceGUI-3.0")
 	AddOn:AddLib("AceConfig", "AceConfig-3.0-ElvUI")
 	AddOn:AddLib("AceConfigDialog", "AceConfigDialog-3.0-ElvUI")
@@ -60,17 +62,15 @@ function AddOn:Initialize()
 	self.data.RegisterCallback(self, "OnProfileCopied", "UpdateAll")
 	self.data._ResetProfile = self.data.ResetProfile
 	self.data.ResetProfile = self.OnProfileReset
-	self.charSettings = AddOn.Libs.AceDB:New("RaidBrowserPrivateDB", self.privateVars,true)
+	self.charSettings = AddOn.Libs.AceDB:New("RaidBrowserPrivateDB", self.privateVars, true)
 
 	self.private = self.charSettings.profile
 	self.db = self.data.profile
 	self.global = self.data.global
-    AddOn.Core:Init()
+	AddOn.Core:Init()
 end
 
-
 function AddOn:OnInitialize()
-
 	if not RaidBrowserCharacterDB then
 		RaidBrowserCharacterDB = {}
 	end
@@ -85,7 +85,7 @@ function AddOn:OnInitialize()
 
 		local profileKey
 		if RaidBrowserDB.profileKeys then
-			profileKey = RaidBrowserDB.profileKeys[UnitName("player").." - " ..GetRealmName()]
+			profileKey = RaidBrowserDB.profileKeys[UnitName("player") .. " - " .. GetRealmName()]
 		end
 
 		if profileKey and RaidBrowserDB.profiles and RaidBrowserDB.profiles[profileKey] then
@@ -98,7 +98,7 @@ function AddOn:OnInitialize()
 	if RaidBrowserPrivateDB then
 		local profileKey
 		if RaidBrowserPrivateDB.profileKeys then
-			profileKey = RaidBrowserPrivateDB.profileKeys[UnitName("player").." - " ..GetRealmName()]
+			profileKey = RaidBrowserPrivateDB.profileKeys[UnitName("player") .. " - " .. GetRealmName()]
 		end
 
 		if profileKey and RaidBrowserPrivateDB.profiles and RaidBrowserPrivateDB.profiles[profileKey] then
@@ -108,15 +108,12 @@ function AddOn:OnInitialize()
 	self.loadedtime = GetTime()
 end
 
-
 local LoadUI = _G.CreateFrame("Frame")
 LoadUI:RegisterEvent("PLAYER_LOGIN")
 LoadUI:RegisterEvent("ADDON_LOADED")
-LoadUI:SetScript("OnEvent", function(self,event)
-	if(event == "PLAYER_LOGIN") then
+LoadUI:SetScript("OnEvent", function(self, event)
+	if (event == "PLAYER_LOGIN") then
 		AddOn:Initialize()
 		Engine[1].GUI:InitMinimapIcon()
 	end
 end)
-
-

@@ -2,7 +2,7 @@ local AddOnName, Engine = ...
 
 local gameLocale
 do -- Locale doesn't exist yet, make it exist.
-	local convert = {["enGB"] = "enUS", ["esES"] = "esMX", ["itIT"] = "enUS"}
+	local convert = { ["enGB"] = "enUS", ["esES"] = "esMX", ["itIT"] = "enUS" }
 	local lang = GetLocale()
 
 	gameLocale = convert[lang] or lang or "enUS"
@@ -10,7 +10,7 @@ do -- Locale doesn't exist yet, make it exist.
 end
 
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
-E.GUI.Options.args.Header = { -- Header RaidBrowser
+E.GUI.Options.args.Header = {         -- Header RaidBrowser
 	order = 1,
 	type = "header",
 	name = format("%s: |cff99ff33%s|r", L["Version"], GetAddOnMetadata(AddOnName, "Version")),
@@ -43,7 +43,7 @@ function E:ResetProfile()
 	local profileKey
 
 	if RaidBrowserPrivateDB.profileKeys then
-		profileKey = RaidBrowserPrivateDB.profileKeys[UnitName("player").." - " ..GetRealmName()]
+		profileKey = RaidBrowserPrivateDB.profileKeys[UnitName("player") .. " - " .. GetRealmName()]
 
 		if profileKey and RaidBrowserPrivateDB.profiles and RaidBrowserPrivateDB.profiles[profileKey] then
 			RaidBrowserPrivateDB.profiles[profileKey] = nil
@@ -67,14 +67,14 @@ function E.Core:SplitString(str, limit, indent, indent1)
 	indent = indent or ""
 	indent1 = indent1 or indent
 	limit = limit or 70
-	local here = 1-#indent1
+	local here = 1 - #indent1
 	local function check(sp, st, word, fi)
 		if fi - here > limit then
 			here = st - #indent
-			return "\n"..indent..word
+			return "\n" .. indent .. word
 		end
 	end
-	return indent1..str:gsub("(%s+)()(%S+)()", check)
+	return indent1 .. str:gsub("(%s+)()(%S+)()", check)
 end
 
 function E.Core:GetConfigDefaultSize()
@@ -93,14 +93,15 @@ function E.Core:DebugPrint(...)
 		DEFAULT_CHAT_FRAME:AddMessage(strjoin(" ", "RBD!: ", ...))
 	end
 end
+
 function E.Core:ChangeDebug(boolParam)
 	if type(boolParam) == "boolean" then
 		E.debug = boolParam
 	else
 		E.debug = not E.debug
 	end
-
 end
+
 function E.Core:Init()
 	E.GUI:Init();
 	E.Core:InitRaidCDInfo();
