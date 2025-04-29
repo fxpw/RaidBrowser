@@ -19,18 +19,20 @@ function E.Core:GetLFGMsg()
 	end
 	-- " \124cffffff00\124Hquest:99:15\124h[Arugal's Folly]\124h\124r"
 	-- /run print(" \124cffffff00\124Hquest:22387:15\124h[Arugal's Folla]\124h\124r")
-	local selectedRaidMSG = string.format("\124cffffff00\124H%s:%s\124h[%s]\124h\124r", type1, type2, type3)
+	-- FIXME
+	local selectedRaidMSG = type3;
+	-- local selectedRaidMSG = string.format("\124cffffff00\124H%s:%s\124h[%s]\124h\124r", type1, type2, type3)
 	-- print(selectedRaidMSG)
 	msg = msg .. selectedRaidMSG .. " нужны "
 	if db.tankCount == 0 and db.healCount == 0 and db.ddCount == 0 then
 		msg = msg .. " все "
 	else
 		local tanksMSG = (db.tankCount > 0 and db.tankCount .. " танк(а)" or "") ..
-		(db.tankInfo ~= "" and (" (" .. db.tankInfo .. ") ") or " ")
+			(db.tankInfo ~= "" and (" (" .. db.tankInfo .. ") ") or " ")
 		local healMSG = (db.healCount > 0 and db.healCount .. " хил(а)" or "") ..
-		(db.healInfo ~= "" and (" (" .. db.healInfo .. ") ") or " ")
+			(db.healInfo ~= "" and (" (" .. db.healInfo .. ") ") or " ")
 		local ddMSG = (db.ddCount > 0 and db.ddCount .. " дд/рдд" or "") ..
-		(db.ddInfo ~= "" and (" (" .. db.ddInfo .. ") ") or " ")
+			(db.ddInfo ~= "" and (" (" .. db.ddInfo .. ") ") or " ")
 		msg = msg .. tanksMSG
 		msg = msg .. healMSG
 		msg = msg .. ddMSG
@@ -38,7 +40,7 @@ function E.Core:GetLFGMsg()
 	local ilvlMSG = ("от " .. db.ilvlCount .. " ilvl") .. (db.ilvlInfo ~= "" and (" (" .. db.ilvlInfo .. ") ") or " ")
 	msg = msg .. ilvlMSG
 	local anrollMSG = (db.anrolCount > 0 and (db.anrolCount .. " a") or "") ..
-	(db.anrolInfo ~= "" and (" (" .. db.anrolInfo .. ") ") or " ")
+		(db.anrolInfo ~= "" and (" (" .. db.anrolInfo .. ") ") or " ")
 	msg = msg .. anrollMSG
 	msg = msg .. db.addedInfo
 	return msg .. " RB!"
@@ -80,8 +82,8 @@ function E.Core:ClickToInvButton(link)
 	-- print(_,_, rlName)
 	local playerInfo = E.Core:GetPlayerInfo()
 	SendChatMessage(
-	"RB!: Хочу в группу, я " ..
-	playerInfo.playerClassName .. " " .. E.Core:GetSpecNameFromTalents(C_Talent.GetSpecInfoCache().activeTalentGroup),
+		"RB!: Хочу в группу, я " ..
+		playerInfo.playerClassName .. " " .. E.Core:GetSpecNameFromTalents(C_Talent.GetSpecInfoCache().activeTalentGroup),
 		"WHISPER", GetDefaultLanguage(), rlName);
 	E.Core:SendRequestAddToRaid(rlName)
 end
@@ -158,7 +160,7 @@ function E.Core:InitSendMessage()
 				-- end
 			elseif self.lastSpam > time() - E.db.spamTime and not E.Core.CanSendMessage then
 				E.GUI:UpdateInfoText("Отправка сообщения:" ..
-				string.format("%.0f", (E.db.spamTime - (time() - self.lastSpam))))
+					string.format("%.0f", (E.db.spamTime - (time() - self.lastSpam))))
 			end
 		end
 	end)
