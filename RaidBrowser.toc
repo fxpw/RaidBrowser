@@ -1,6 +1,6 @@
 ## Interface: 30300
 ## Title: RaidBrowser
-## Version: 2.06
+## Version: 2.07
 ## Notes: A raid finder that parses chat channel text and displays any found raids in the raid browser frame.
 ## Notes-ruRU: Анализ текста канала чата и отображение найденных рейдов в окне поиска рейдов.
 ## Author: fxpw
