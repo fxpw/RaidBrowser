@@ -329,19 +329,15 @@ function E.GUI:CreateFindFrame()
 	ScrollBar:SetWidth(ScrollParent:GetWidth() - 35);
 	ScrollBar:SetHeight(ScrollParent:GetHeight() - 15);
 	ScrollBar:SetPoint("TOPRIGHT", ScrollParent, "TOPRIGHT", -30, 0);
-	ScrollBar:SetPoint("BOTTOMRIGHT", ScrollParent, "BOTTOMRIGHT", -30, 0);
+	ScrollBar:SetPoint("BOTTOMRIGHT", ScrollParent, "BOTTOMRIGHT", -30, 10);
 	-- ScrollBar:SetPoint("RIGHT", ScrollParent, "RIGHT", -30, 0)
 	ScrollBar:SetScript("OnVerticalScroll", function(self, value)
+		local param = E.GUI:GetCanUpdateFindFrame()
+		E.GUI:SetCanUpdateFindFrame(true)
 		FauxScrollFrame_OnVerticalScroll(ScrollBar, value, E.GUI.recordHeight, E.GUI.FindFrameRaidInfoUpdate);
+		E.GUI:SetCanUpdateFindFrame(param)
 	end)
-	local ScrollBar2 = _G.RBFindFrameScrollParentScrollBarScrollBar
-	if (ScrollBar2) then
-		E.GUI:HookScrollBar(ScrollBar2);
-		local border = _G.RBFindFrameScrollParentScrollBarScrollBarBorder
-		if border then
-			border:Hide()
-		end
-	end
+	E.GUI:HookScrollBar(_G.RBFindFrameScrollParentScrollBarScrollBar);
 end
 
 function E.GUI:UpdateFindFrame()
