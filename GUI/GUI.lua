@@ -107,13 +107,21 @@ function E.GUI:CreateSortButton(parent, name, tableForSort, paramName, pointner,
 	return frame
 end
 
+function E.GUI:HookScrollBar(scrollbar)
+	if(ElvUI) then
+		local Elv = unpack(ElvUI); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+		local SElv = Elv:GetModule("Skins")
+		SElv:HandleScrollBar(scrollbar)
+	end
+end
+
 function E.GUI:OptionsFrameInit()
 	E.Libs.AceConfig:RegisterOptionsTable("RaidBrowser", E.GUI.Options);
 	E.Libs.AceConfigDialog:SetDefaultSize("RaidBrowser", E.Core:GetConfigDefaultSize());
 	E.Libs.AceConfigDialog["Open"](E.Libs.AceConfigDialog, AddOnName)
 	-- if mode == "Open" then
 	local ConfigOpen = E.Libs.AceConfigDialog and E.Libs.AceConfigDialog.OpenFrames and
-	E.Libs.AceConfigDialog.OpenFrames[AddOnName]
+		E.Libs.AceConfigDialog.OpenFrames[AddOnName]
 	if ConfigOpen then
 		local frame = ConfigOpen.frame
 		if frame and not E.GUI.OptionsFrame then
