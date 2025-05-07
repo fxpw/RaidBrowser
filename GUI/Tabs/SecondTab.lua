@@ -219,7 +219,7 @@ function E.GUI:CreateFindFrameRecord(i)
 		if self.backdrop then
 			self.backdrop:SetBackdropBorderColor(0, 0, 0, 1);
 		end
-		E.GUI.timerToCheck = C_Timer:After(2, function()
+		E.GUI.timerToCheck = C_Timer:After(1, function()
 			E.GUI:SetCanUpdateFindFrame(true)
 			E.GUI:FindFrameRaidInfoUpdate()
 		end)
