@@ -108,10 +108,15 @@ function E.GUI:CreateSortButton(parent, name, tableForSort, paramName, pointner,
 end
 
 function E.GUI:HookScrollBar(scrollbar)
-	if(ElvUI) then
+	if(scrollbar and ElvUI) then
 		local Elv = unpack(ElvUI); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 		local SElv = Elv:GetModule("Skins")
 		SElv:HandleScrollBar(scrollbar)
+
+		local border = _G[scrollbar:GetName().."Border"]
+		if border then
+			border:Hide()
+		end
 	end
 end
 
