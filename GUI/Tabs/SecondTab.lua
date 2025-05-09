@@ -42,20 +42,40 @@ E.GUI.Options.args.SecondTab = {
 		},
 	}
 }
-
-local order = 6
-
+E.GUI.Options.args.SecondTab.args["raidSep1"] = {
+	order = 6,
+	name = "Вкл/выкл поиск канкретного рейда",
+	type = "header",
+	width = "full"
+}
+local order_global = 7
+local order_for_raid = 1
+local order_for_sep = 2
 --
 for k, v in pairs(E.dungeonsForOptions) do
-	-- E.GUI.Options.args.SecondTab.args["RaidBlackList" .. order - 5] = {
-	-- 	order = order,
-	-- 	name = L["HideRaidsWithCD"],
-	-- 	set = function(info, value)
-	-- 		E.db[info[#info]] = value
-	-- 		E.GUI:FindFrameRaidInfoUpdate()
-	-- 	end,
-	-- }
-	-- order = order + 1
+	if not string.find(v, "ilvl") then
+		E.GUI.Options.args.SecondTab.args["RaidBlackList" .. order_for_raid] = {
+			order = order_global,
+			type = "toggle",
+			name = v,
+			desc = v,
+			set = function(info, value)
+				E.db[info[#info]] = value
+				E.GUI:FindFrameRaidInfoUpdate()
+			end,
+		}
+		print("RaidBlackList" .. order_for_raid)
+	else
+		E.GUI.Options.args.SecondTab.args["raidSep" .. order_for_sep] = {
+			order = order_global,
+			name = v,
+			type = "header",
+			width = "full"
+		}
+		order_for_sep = order_for_sep + 1
+	end
+	order_for_raid = order_for_raid + 1
+	order_global = order_global + 1
 	print(k, v)
 end
 local _tempTable = {}
