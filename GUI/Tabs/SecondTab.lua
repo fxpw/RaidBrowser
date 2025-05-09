@@ -64,7 +64,7 @@ for k, v in pairs(E.dungeonsForOptions) do
 				E.GUI:FindFrameRaidInfoUpdate()
 			end,
 		}
-		print("RaidBlackList" .. order_for_raid)
+		-- print("RaidBlackList" .. order_for_raid)
 	else
 		E.GUI.Options.args.SecondTab.args["raidSep" .. order_for_sep] = {
 			order = order_global,
@@ -76,7 +76,7 @@ for k, v in pairs(E.dungeonsForOptions) do
 	end
 	order_for_raid = order_for_raid + 1
 	order_global = order_global + 1
-	print(k, v)
+	-- print(k, v)
 end
 local _tempTable = {}
 local menuList = {
