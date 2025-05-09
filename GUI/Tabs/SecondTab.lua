@@ -30,6 +30,16 @@ E.GUI.Options.args.SecondTab = {
 			name = L["TimeToClearRaids"],
 			desc = L["TimeToClearRaidsdesc"],
 		},
+		HideRaidsWithCD = {
+			order = 5,
+			type = "toggle",
+			name = L["HideRaidsWithCD"],
+			desc = L["HideRaidsWithCDdesc"],
+			set = function(info, value) 
+				E.db[info[#info]] = value 
+				E.GUI:FindFrameRaidInfoUpdate()
+			end,
+		},
 	}
 }
 local _tempTable = {}
@@ -64,14 +74,33 @@ function E.GUI:FindFrameRaidInfoUpdate()
 		if not E.GUI.CollapseFrame.MainFrame.FindFrame:IsVisible() then
 			return;
 		end
+		local filteredRaids = {}
+		
+		if E.db.HideRaidsWithCD then
+			for i, raid in ipairs(E.Core.raidsTable) do
+				local hasCD = false
+				for _, v in pairs(raid.instanceName) do
+					if E.Core:IsRaidInCD(v[1], raid.size, v[2]) then
+						hasCD = true
+						break
+					end
+				end
+				if not hasCD then
+					table.insert(filteredRaids, raid)
+				end
+			end
+		else
+			filteredRaids = E.Core.raidsTable
+		end
+		
 		local offset = FauxScrollFrame_GetOffset(E.GUI.CollapseFrame.MainFrame.FindFrame.ScrollParent.ScrollBar);
-		local numRecords = #E.Core.raidsTable;
+		local numRecords = #filteredRaids;
 		local numDisplayedRecords = math.min(E.GUI.numLogRecordFrames, numRecords - offset);
 		local record;
 		for i = 1, E.GUI.numLogRecordFrames do
 			record = E.GUI.CollapseFrame.MainFrame.FindFrame.ScrollParent.Records[i];
 			local logIndex = i + offset - 1;
-			local logTableRecord = E.Core.raidsTable[#E.Core.raidsTable - logIndex];
+			local logTableRecord = filteredRaids[#filteredRaids - logIndex];
 			if logIndex < numRecords then
 				record:UpdateRaidInfo(logTableRecord);
 				record:Show();
@@ -273,45 +302,66 @@ function E.GUI:CreateFindFrame()
 	-- self.fontHeight = select(2, getglobal(self.font):GetFont());
 	-- self.recordHeight = self.fontHeight + 15;
 	-- self.recordWidth = E.GUI.CollapseFrame.MainFrame.FindFrame.ScrollParent:GetWidth() - 35
+	
+	E.GUI.GetFilteredRaidsTable = function()
+		if not E.db.HideRaidsWithCD then
+			return E.Core.raidsTable
+		end
+		
+		local filteredRaids = {}
+		for i, raid in ipairs(E.Core.raidsTable) do
+			local hasCD = false
+			for _, v in pairs(raid.instanceName) do
+				if E.Core:IsRaidInCD(v[1], raid.size, v[2]) then
+					hasCD = true
+					break
+				end
+			end
+			if not hasCD then
+				table.insert(filteredRaids, raid)
+			end
+		end
+		return filteredRaids
+	end
 
 	local SortRaidName = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortRaidName",
-		E.Core.raidsTable, "raidName", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 0, 0 }, true, nil)
+		E.GUI.GetFilteredRaidsTable, "raidName", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 0, 0 }, true, nil)
 	SortRaidName.fs:SetText(L["SortRaidName"])
 	-- SortRaidName:Size(4 * self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortRaidName, 4 * self.recordHeight, self.recordHeight)
 
-	local SortRLName = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortRLName", E.Core.raidsTable,
-		"rlName", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 4.2 * self.recordHeight, 0 }, true, nil)
+	local SortRLName = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortRLName", 
+		E.GUI.GetFilteredRaidsTable, "rlName", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 4.2 * self.recordHeight, 0 }, true, nil)
 	SortRLName.fs:SetText(L["SortRLName"])
 	-- SortRLName:Size(4 * self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortRLName, 4 * self.recordHeight, self.recordHeight)
 
 	local SortRLFaction = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortFaction",
-		E.Core.raidsTable, "rlFaction", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 10 * self.recordHeight, 0 }, nil, true)
+		E.GUI.GetFilteredRaidsTable, "rlFaction", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 10 * self.recordHeight, 0 }, nil, true)
 	SortRLFaction.texture:SetTexture(factionToTexture[UnitFactionGroup("player")]);
 	-- SortRLFaction:Size(self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortRLFaction, self.recordHeight, self.recordHeight)
 
-	local SortDD = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortDD", E.Core.raidsTable, "dd",
-		{ "BOTTOMLEFT", ScrollParent, "TOPLEFT", 12 * self.recordHeight, 0 }, nil, true)
+	local SortDD = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortDD", 
+		E.GUI.GetFilteredRaidsTable, "dd", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 12 * self.recordHeight, 0 }, nil, true)
 	SortDD.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\dps]]);
 	-- SortDD:Size(self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortDD, self.recordHeight, self.recordHeight)
 
-	local SortHeal = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortHeal", E.Core.raidsTable,
-		"heal", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 13 * self.recordHeight, 0 }, nil, true)
+	local SortHeal = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortHeal", 
+		E.GUI.GetFilteredRaidsTable, "heal", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 13 * self.recordHeight, 0 }, nil, true)
 	SortHeal.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\healer]]);
 	-- SortHeal:Size(self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortHeal, self.recordHeight, self.recordHeight)
 
-	local SortTank = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortTank", E.Core.raidsTable,
-		"tank", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 14 * self.recordHeight, 0 }, nil, true)
+	local SortTank = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortTank", 
+		E.GUI.GetFilteredRaidsTable, "tank", { "BOTTOMLEFT", ScrollParent, "TOPLEFT", 14 * self.recordHeight, 0 }, nil, true)
 	SortTank.texture:SetTexture([[Interface\AddOns\RaidBrowser\Media\Textures\tank]]);
 	-- SortTank:Size(self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortTank, self.recordHeight, self.recordHeight)
 
-	local SortILVL = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortILVL", E.Core.raidsTable,
-		"ilvl", { "BOTTOMRIGHT", ScrollParent, "TOPRIGHT", -35, 0 }, true, nil)
+	local SortILVL = E.GUI:CreateSortButton(E.GUI.CollapseFrame.MainFrame.FindFrame, "SortILVL", 
+		E.GUI.GetFilteredRaidsTable, "ilvl", { "BOTTOMRIGHT", ScrollParent, "TOPRIGHT", -35, 0 }, true, nil)
 	SortILVL.fs:SetText(L["SortILVL"])
 	-- SortILVL:Size(4 * self.recordHeight,  self.recordHeight);
 	E.GUI:Size(SortILVL, 1.2 * self.recordHeight, self.recordHeight)

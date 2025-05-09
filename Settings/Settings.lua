@@ -21,6 +21,7 @@ P.ilvlCount = 200
 P.anrolCount = 4
 P.ilvlInfo = ""
 
+P.HideRaidsWithCD = false
 P.anrolInfo = ""
 P.addedInfo = ""
 P.spamTime = 30

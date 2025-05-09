@@ -72,6 +72,8 @@ L["Find Raid Tab"] = "Найти рейд"
 L["History Raid Tab"] = "История"
 L["TimeToClearRaids"] = "Время удаления рейдов"
 L["TimeToClearRaidsdesc"] = "Время между удалениями рейдов из списка"
+L["HideRaidsWithCD"] = "Скрыть рейды с КД"
+L["HideRaidsWithCDdesc"] = "Если включено, рейды с КД не будут отображаться в списке"
 
 L["TimeToClearAssemble"] = "Время удаления запросов"
 L["TimeToClearAssembledesc"] = "Время удаления запросов на добавление в группу в 1 вкладке"
