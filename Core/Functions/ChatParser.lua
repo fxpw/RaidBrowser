@@ -220,8 +220,28 @@ local function ChatParserFunc(self, event, message, sender, language, _, _, _, _
 		tableForAdd["lastSpamTime"] = time();
 		tableForAdd["message"]      = originalMessage;
 		tableForAdd["latestMSG"]    = message;
+		local numRaidsWhithoutCD    = #raidInfo.instanceName
+		for _, v in pairs(raidInfo.instanceName) do
+			if E.Core:IsRaidInCD(v[1], raidInfo.size, v[2]) then
+				numRaidsWhithoutCD = numRaidsWhithoutCD - 1
+			end
+		end
 		E.Core:RemoveRecordsByName(sender);
-		table.insert(E.Core.raidsTable, tableForAdd)
+
+		if E.db.HideRaidsWithCD then
+			if numRaidsWhithoutCD == 0 then
+				-- all
+			elseif numRaidsWhithoutCD == #raidInfo.instanceName then
+				-- half
+				table.insert(E.Core.raidsTable, tableForAdd)
+			else
+				-- zero
+				table.insert(E.Core.raidsTable, tableForAdd)
+			end
+		else
+			table.insert(E.Core.raidsTable, tableForAdd)
+		end
+
 		E.GUI:FindFrameRaidInfoUpdate();
 	end
 end
