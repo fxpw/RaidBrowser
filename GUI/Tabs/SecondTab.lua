@@ -106,7 +106,7 @@ function E.GUI:CreateFindFrameRecord(i)
 	record:SetHeight(self.recordHeight);
 	record:SetWidth(self.recordWidth);
 	record.raidName = record.raidName or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
-	record.raidName:SetPoint("LEFT", record, "LEFT", 0, 0);
+	record.raidName:SetPoint("LEFT", record, "LEFT", 5, 0);
 	record.raidName:SetText(record.raidInfo.raidName);
 
 	record.rlName = record.rlName or record:CreateFontString(nil, OVERLAY, "GameTooltipText");
