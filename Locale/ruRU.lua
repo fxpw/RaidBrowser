@@ -92,4 +92,6 @@ L["UnknownCommand"] = "Неизвестная команда, используй
 L["Frame Change Size Tab"] = "Настройки окон"
 L["DelayForAnimatedMinimapIcon"] = "Задержка обновления иконки на миникарте"
 L["DelayForAnimatedMinimapIcondesc"] = "Задержка обновления иконки на миникарте"
+L["HideRaidsWithCD"] = "Скрыть рейды с КД"
+L["HideRaidsWithCDdesc"] = "Если включено, рейды с КД не будут отображаться в списке"
 -- L["stopSpam"] = "Остановить"
