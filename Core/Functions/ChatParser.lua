@@ -229,9 +229,7 @@ local function ChatParserFunc(self, event, message, sender, language, _, _, _, _
 		E.Core:RemoveRecordsByName(sender);
 
 		if E.db.HideRaidsWithCD then
-			if numRaidsWhithoutCD == 0 then
-				-- all
-			elseif numRaidsWhithoutCD == #raidInfo.instanceName then
+			if numRaidsWhithoutCD == #raidInfo.instanceName then
 				-- half
 				table.insert(E.Core.raidsTable, tableForAdd)
 			else
