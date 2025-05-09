@@ -44,7 +44,7 @@ E.GUI.Options.args.SecondTab = {
 }
 E.GUI.Options.args.SecondTab.args["raidSep1"] = {
 	order = 6,
-	name = "Вкл/выкл поиск канкретного рейда",
+	name = "Вкл/выкл поиск конкретного рейда",
 	type = "header",
 	width = "full"
 }
