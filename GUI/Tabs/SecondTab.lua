@@ -42,6 +42,22 @@ E.GUI.Options.args.SecondTab = {
 		},
 	}
 }
+
+local order = 6
+
+--
+for k, v in pairs(E.dungeonsForOptions) do
+	-- E.GUI.Options.args.SecondTab.args["RaidBlackList" .. order - 5] = {
+	-- 	order = order,
+	-- 	name = L["HideRaidsWithCD"],
+	-- 	set = function(info, value)
+	-- 		E.db[info[#info]] = value
+	-- 		E.GUI:FindFrameRaidInfoUpdate()
+	-- 	end,
+	-- }
+	-- order = order + 1
+	print(k, v)
+end
 local _tempTable = {}
 local menuList = {
 	{
@@ -206,7 +222,9 @@ function E.GUI:CreateFindFrameRecord(i)
 		GameTooltip:AddLine(" ", 1, 1, 1);
 		GameTooltip:AddDoubleLine(L["Sender"], self.raidInfo.rlName, 1, 1, 1, 1, 1, 0);
 		GameTooltip:AddDoubleLine(L["Raid"], self.raidInfo.raidName, 1, 1, 1, 1, 1, 0);
-		GameTooltip:AddDoubleLine(L["Time"], date("%H:%M %m-%d-%Y", self.raidInfo.lastSpamTime).." "..string.format("(%sc назад)",time()-self.raidInfo.lastSpamTime), 1, 1, 1, 1, 1, 0);
+		GameTooltip:AddDoubleLine(L["Time"],
+			date("%H:%M %m-%d-%Y", self.raidInfo.lastSpamTime) ..
+			" " .. string.format("(%sc назад)", time() - self.raidInfo.lastSpamTime), 1, 1, 1, 1, 1, 0);
 		GameTooltip:AddLine(" ", 1, 1, 1);
 		GameTooltip:AddLine(" ", 1, 1, 1);
 		GameTooltip:AddDoubleLine(L["Message"], E.Core:SplitString(self.raidInfo.message, 50, "", ""), 1, 1, 1, 1, 0, 0)
