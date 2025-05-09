@@ -89,5 +89,6 @@ E.Patterns.BlackLists = {
 	"в" .. csep .. "pve" .. sep,
 	"в" .. csep .. "пве" .. csep .. "гильдию" .. sep,
 	"прогресс" .. csep .. "ги",
+	"в" .. csep .. "гильдию",
 
 }

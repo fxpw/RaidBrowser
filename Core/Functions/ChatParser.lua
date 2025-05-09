@@ -234,7 +234,7 @@ local function ChatParserFunc(self, event, message, sender, language, _, _, _, _
 				-- all
 			elseif numRaidsWhithoutCD == #raidInfo.instanceName then
 				-- half
-				print(E.db["RaidBlackList" .. raidInfo.configOrder],"RaidBlackList" .. raidInfo.configOrder)
+				-- print(E.db["RaidBlackList" .. raidInfo.configOrder],"RaidBlackList" .. raidInfo.configOrder)
 				if (E.db["RaidBlackList" .. raidInfo.configOrder]) then
 					table.insert(E.Core.raidsTable, tableForAdd)
 				end
