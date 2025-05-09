@@ -234,13 +234,20 @@ local function ChatParserFunc(self, event, message, sender, language, _, _, _, _
 				-- all
 			elseif numRaidsWhithoutCD == #raidInfo.instanceName then
 				-- half
-				table.insert(E.Core.raidsTable, tableForAdd)
+				print(E.db["RaidBlackList" .. raidInfo.configOrder],"RaidBlackList" .. raidInfo.configOrder)
+				if (E.db["RaidBlackList" .. raidInfo.configOrder]) then
+					table.insert(E.Core.raidsTable, tableForAdd)
+				end
 			else
 				-- zero
-				table.insert(E.Core.raidsTable, tableForAdd)
+				if (E.db["RaidBlackList" .. raidInfo.configOrder]) then
+					table.insert(E.Core.raidsTable, tableForAdd)
+				end
 			end
 		else
-			table.insert(E.Core.raidsTable, tableForAdd)
+			if (E.db["RaidBlackList" .. raidInfo.configOrder]) then
+				table.insert(E.Core.raidsTable, tableForAdd)
+			end
 		end
 
 		E.GUI:FindFrameRaidInfoUpdate();

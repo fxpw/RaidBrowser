@@ -42,3 +42,6 @@ P.ChannelNumbers = {
 	["6"] = false,
 	["7"] = false,
 }
+for i = 1,150 do
+	P["RaidBlackList"..i]=true
+end
