@@ -30,6 +30,16 @@ E.GUI.Options.args.SecondTab = {
 			name = L["TimeToClearRaids"],
 			desc = L["TimeToClearRaidsdesc"],
 		},
+		HideRaidsWithCD = {
+			order = 5,
+			type = "toggle",
+			name = L["HideRaidsWithCD"],
+			desc = L["HideRaidsWithCDdesc"],
+			set = function(info, value)
+				E.db[info[#info]] = value
+				E.GUI:FindFrameRaidInfoUpdate()
+			end,
+		},
 	}
 }
 local _tempTable = {}

@@ -26,6 +26,7 @@ P.addedInfo = ""
 P.spamTime = 30
 
 P.TimeToClearRaids = 60
+P.HideRaidsWithCD = false
 P.TimeToClearAssemble = 60
 P.CollapseFrameX = -300
 P.CollapseFrameY = -300
