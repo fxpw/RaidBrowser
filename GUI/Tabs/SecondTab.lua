@@ -223,6 +223,13 @@ function E.GUI:CreateFindFrameRecord(i)
 				ChatFrame_OpenChat(SLASH_WHISPER1 .. " " .. menuList[1].arg1.rlName .. " ")
 			end
 		}
+		menuList[menuList[1].arg2.maxSpecs + 2] = {
+			text = L["Who"] .. " " .. menuList[1].arg1.rlName,
+			notCheckable = 1,
+			func = function()
+				SendWho(menuList[1].arg1.rlName)
+			end
+		}
 		if position:match("LEFT") then
 			EasyMenu(menuList, E.GUI.CollapseFrame.MainFrame.FindFrame.MenuFrame, "cursor", 0, 0, "MENU", 2);
 		else
