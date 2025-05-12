@@ -52,7 +52,7 @@ local order_global = 7
 local order_for_raid = 1
 local order_for_sep = 2
 --
-for k, v in pairs(E.dungeonsForOptions) do
+for _, v in pairs(E.dungeonsForOptions) do
 	if not string.find(v, "ilvl") then
 		E.GUI.Options.args.SecondTab.args["RaidBlackList" .. order_for_raid] = {
 			order = order_global,
