@@ -29,6 +29,7 @@ L["SendMSGToRL(spec9)"] = "Сообщение (spec9)"
 L["SendMSGToRL(spec10)"] = "Сообщение (spec10)"
 L["SendMSGToRL(current)"] = "Сообщение (текущий спек)"
 L["Whisper"] = "Шепот"
+L["Who"] = "/who"
 L["AddToParty"] = "Добавить в группу"
 L["Delete"] = "Удалить"
 
