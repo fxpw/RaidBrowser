@@ -64,6 +64,19 @@ function E.Core:PlayerIsDD()
 	return math.random(1, 2) == 2
 end
 
+function E.Core:Has4t4()
+	for i = 1,40 do
+		local buffname = UnitBuff("player",i)
+		if buffname then
+			if string.find(buffname,"Тир 4") then
+				return true
+			end
+		else
+			return false
+		end
+	end
+end
+
 function E.Core:GetPlayerInfo()
 	table.wipe(E.Core.PlayerInfo)
 	E.Core.PlayerInfo.playerClassName = UnitClass("player");
@@ -76,6 +89,7 @@ function E.Core:GetPlayerInfo()
 	E.Core.PlayerInfo.dd = E.Core:PlayerIsDD();
 	E.Core.PlayerInfo.tank = E.Core:PlayerIsTank();
 	E.Core.PlayerInfo.myFaction = UnitFactionGroup("player");
+	E.Core.PlayerInfo._4t4 = E.Core:Has4t4();
 	return E.Core.PlayerInfo;
 end
 
