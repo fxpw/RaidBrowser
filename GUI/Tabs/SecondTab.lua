@@ -86,7 +86,7 @@ local menuList = {
 		arg1 = _tempTable,
 		func = function(self, arg1, arg2)
 			SendChatMessage(
-				"RB!: Хочу в группу, я " .. arg2.ilvl .. " " .. arg2.playerClassName .. " " .. arg2.currentSpecName,
+				"RB!: Хочу в группу, я " .. arg2.ilvl .. " " ..(arg2._4t4 and "4т4 "  or "") .. arg2.playerClassName .. " " .. arg2.currentSpecName,
 				"WHISPER", GetDefaultLanguage(), arg1.rlName);
 			E.Core:SendRequestAddToRaid(arg1.rlName)
 		end
