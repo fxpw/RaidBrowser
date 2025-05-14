@@ -1044,7 +1044,7 @@ E.Patterns.Raids = {
 	{ -- каражан хм
 		raidName = "Кара хм",
 		instanceName = {
-			{ "Каражан", 2 }
+			{ "Каражан", 4 }
 		},
 		size = 10,
 		difficulty = 2,
