@@ -2,7 +2,7 @@ local AddOnName, Engine = ...
 local E, L, V, P, G = unpack(Engine); --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
 local C_Talent = C_Talent
 E.Core.CanSendMessage = false
-E.Core.IsNeedSendMessage = false
+E.Core.IsNeedSendMessage = true
 -- /run local a = GetFixedLink function GetFixedLink(...) print(...) return a(...) end
 -- /run hooksecurefunc("SetItemRef", function(link, ...) local printable = gsub(link, "\124", "\124\124"); if (printable) then ItemRefTooltip:AddDoubleLine("print: " .. printable); ItemRefTooltip:Show();end end)
 -- hooksecurefunc("EncounterJournal_OpenJournalLink",function(...)print(...) end) -- test links
@@ -159,7 +159,7 @@ function E.Core:InitSendMessage()
 				E.GUI:UpdateInfoText("Отправить сообщение")
 				-- end
 			elseif self.lastSpam > time() - E.db.spamTime and not E.Core.CanSendMessage then
-				E.GUI:UpdateInfoText("Отправка сообщения:" ..
+				E.GUI:UpdateInfoText("Отправка сообщения: " ..
 					string.format("%.0f", (E.db.spamTime - (time() - self.lastSpam))))
 			end
 		end
