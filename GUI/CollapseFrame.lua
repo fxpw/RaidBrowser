@@ -82,10 +82,10 @@ function E.GUI:CreateCollapseFrame()
 		GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT");
 		-- GameTooltip:AddDoubleLine(L["Time"], date("%Y-%m-%d %H:%M", self.raidInfo.lastSpamTime), 1, 1, 1, 1, 1, 0)
 		GameTooltip:AddLine(
-		"Для того чтобы |cff00ff00собрать рейд|r откройте настройки и нажмите |cff00ff00Начать|r в 1 вкладке", 1, 1, 1);
+		"Для того чтобы |cff00ff00Изменить сообщение|r нажмите шестеренку и настройте рейд в 1 вкладке", 1, 1, 1);
 		GameTooltip:AddLine("Для того чтобы |cff00ff00отправить сообщение|r нажмите  |cff00ff00ПКМ|r по окну RaidBroser",
 			1, 1, 1);
-		GameTooltip:AddLine("Если хотите |cff00ff00отправить сообщение рлу наведите мышкрой и нажмите ПКМ|r", 1, 1, 1);
+		GameTooltip:AddLine("Если хотите |cff00ff00отправить сообщение рлу наведите мышкой и нажмите ПКМ|r", 1, 1, 1);
 		GameTooltip:Show();
 	end)
 	CollapseFrame:SetScript("OnLeave", function(self)
