@@ -121,6 +121,7 @@ function E.Core:FindLFM(message)
 end
 
 function E.Core:IsBlackListMSG(message)
+	message = string.lower(message)
 	return E.Core:FindIf(E.Patterns.BlackLists, function(pattern)
 		return string.find(message, pattern);
 	end);
