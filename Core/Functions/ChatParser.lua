@@ -185,7 +185,6 @@ local function ChatParserFunc(self, event, message, sender, language, _, _, _, _
 	message = E.Core:RemoveGarbage(message);
 	message = string.lower(message);
 	raidInfo, message = E.Core:FindRaid(message);
-
 	if string.find(message, 'нид все') then
 		roles = {
 			dd = 1,
