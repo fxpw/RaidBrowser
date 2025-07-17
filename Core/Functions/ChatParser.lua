@@ -279,3 +279,24 @@ function E.Core:InitChatParser()
 	E.Core:CreateChatParserFrame();
 	E.Core:CreateUpdateRaidFrame();
 end
+
+--function E.Core:FindRaid(message)
+    --print("Поиск рейда в сообщении:", message)  -- Отладочный вывод
+    
+    --local raidInfoForReturn = {};
+    --for _, raid in pairs(E.Patterns.Raids) do
+        --if raid.patterns then
+            --for _, pattern in pairs(raid.patterns) do
+                --local result = string.find(message, pattern);
+               	--if result then
+                    --print("Найдено совпадение:", raid.raidName, "по шаблону:", pattern)  -- Отладочный вывод
+                    --E:CopyTable(raidInfoForReturn, raid);
+                    --raidInfoForReturn.find = true;
+                    --message = string.gsub(message, pattern, '');
+                    --return raidInfoForReturn, message;
+                --end
+            --end
+        --end
+    --end
+    --return raidInfoForReturn, message;
+--end
