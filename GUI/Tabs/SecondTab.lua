@@ -53,7 +53,7 @@ local order_for_raid = 1
 local order_for_sep = 2
 --
 for _, v in pairs(E.dungeonsForOptions) do
-	if not string.find(v, "ilvl") then
+	if not (string.find(v, "ilvl") or string.find(v, "Классические") or string.find(v, "Burning Crusade") or string.find(v, "Wrath")) then
 		E.GUI.Options.args.SecondTab.args["RaidBlackList" .. order_for_raid] = {
 			order = order_global,
 			type = "toggle",
@@ -64,6 +64,7 @@ for _, v in pairs(E.dungeonsForOptions) do
 				E.GUI:FindFrameRaidInfoUpdate()
 			end,
 		}
+		order_for_raid = order_for_raid + 1
 		-- print("RaidBlackList" .. order_for_raid)
 	else
 		E.GUI.Options.args.SecondTab.args["raidSep" .. order_for_sep] = {
@@ -74,7 +75,6 @@ for _, v in pairs(E.dungeonsForOptions) do
 		}
 		order_for_sep = order_for_sep + 1
 	end
-	order_for_raid = order_for_raid + 1
 	order_global = order_global + 1
 	-- print(k, v)
 end
@@ -107,6 +107,13 @@ function E.GUI:GetCanUpdateFindFrame() return self.canUpdateFindFrame end
 
 function E.GUI:FindFrameRaidInfoUpdate()
 	if (E.GUI:GetCanUpdateFindFrame()) then
+		local filteredRaids = {}
+        for _, raid in pairs(E.Core.raidsTable) do
+            local raidName = raid.raidName
+            if not E.db["RaidBlackList" .. raidName] then  -- Проверяем, не отключен ли рейд
+                table.insert(filteredRaids, raid)
+            end
+        end
 		if not E.GUI.CollapseFrame.MainFrame.FindFrame:IsVisible() then
 			return;
 		end
