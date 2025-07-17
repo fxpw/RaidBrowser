@@ -1,3 +1,3 @@
 .old/**
 .vscode/**
-.luacheckcache
+.luacheckcache.DS_Store
