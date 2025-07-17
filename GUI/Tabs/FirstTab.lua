@@ -307,14 +307,6 @@ E.GUI.Options.args.FirstTab = {
 			type = "description",
 			name = ""
 		},
-		hideIlvl = {
-        	order = 17,
-        	type = "toggle",
-        	name = "Скрыть ilvl",
-        	desc = "Не показывать требования по ilvl в сообщениях",
-        	get = function() return E.db.hideIlvl end,
-        	set = function(_, value) E.db.hideIlvl = value end,
-    	},
 		ilvlCount = {
 			order = 11,
 			type = "range",
@@ -333,51 +325,39 @@ E.GUI.Options.args.FirstTab = {
 			name = L["anrolCount"],
 			desc = L["anrolCountdesc"],
 		},
-		hideLvl = {
-        	order = 19,
-        	type = "toggle",
-        	name = "Скрыть уровень",
-        	desc = "Не показывать требования по уровню в сообщениях",
-        	get = function() return E.db.hideLvl end,
-        	set = function(_, value) E.db.hideLvl = value end,
-   		},
-		lvlCount = {
-			order = 13,
-			type = "range",
-			min = 10,
-			max = 79,
-			step = 1,
-			name = L["lvlCount"],
-			desc = L["lvlCountdesc"],
+		spacer2 = {
+			order = 14,
+			type = "description",
+			name = ""
 		},
 		ilvlInfo = {
-			order = 14,
+			order = 15,
 			type = "input",
 			-- min = 1, max = 5, step = 1,
 			name = L["ilvlInfo"],
 			desc = L["ilvlInfodesc"],
 		},
 		anrolInfo = {
-			order = 15,
+			order = 16,
 			type = "input",
 			-- min = 1, max = 5, step = 1,
 			name = L["anrolInfo"],
 			desc = L["anrolInfodesc"],
 		},
 		addedInfo = {
-			order = 16,
+			order = 17,
 			type = "input",
 			-- min = 1, max = 5, step = 1,
 			name = L["addedInfo"],
 			desc = L["addedInfodesc"],
 		},
 		spacer3 = {
-			order = 20,
+			order = 18,
 			type = "description",
 			name = ""
 		},
 		ChannelNumbers = {
-			order = 21,
+			order = 19,
 			type = "multiselect",
 			name = L["channelNumber"],
 			-- width = "half",
@@ -395,12 +375,12 @@ E.GUI.Options.args.FirstTab = {
 			end
 		},
 		spacer4 = {
-			order = 22,
+			order = 20,
 			type = "description",
 			name = ""
 		},
 		spamTime = {
-			order = 23,
+			order = 21,
 			type = "range",
 			min = 35,
 			max = 180,
@@ -409,7 +389,7 @@ E.GUI.Options.args.FirstTab = {
 			desc = L["spamTimedesc"],
 		},
 		TimeToClearAssemble = {
-			order = 24,
+			order = 22,
 			type = "range",
 			min = 35,
 			max = 180,
@@ -418,25 +398,25 @@ E.GUI.Options.args.FirstTab = {
 			desc = L["TimeToClearAssembledesc"],
 		},
 		spacer6 = {
-			order = 25,
+			order = 23,
 			type = "header",
 			name = L["spamText"],
 			-- name = function() return E.db.addedInfo end,
 			width = "full"
 		},
 		spamText = {
-			order = 26,
+			order = 24,
 			type = "description",
 			name = function() return E.Core:GetLFGMsg() .. "\n" .. #E.Core:GetLFGMsg() .. "/255" end,
 			width = "full"
 		},
 		spacer7 = {
-			order = 27,
+			order = 25,
 			type = "description",
 			name = ""
 		},
 		spacer8 = {
-			order = 28,
+			order = 26,
 			type = "header",
 			name = "",
 			-- name = function() return E.db.addedInfo end,

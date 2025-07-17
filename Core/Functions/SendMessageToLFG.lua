@@ -37,17 +37,13 @@ function E.Core:GetLFGMsg()
 		msg = msg .. healMSG
 		msg = msg .. ddMSG
 	end
-	-- Добавляем ilvl только если не отключено в настройках
-    if not db.hideIlvl then
-        local ilvlMSG = ("от " .. (db.ilvlCount or 0) .. " ilvl") .. (db.ilvlInfo and db.ilvlInfo ~= "" and (" (" .. db.ilvlInfo .. ")") or "")
-        msg = msg .. " " .. ilvlMSG
-    end
+		local levelValue = db.ilvlCount or 0
+  		local levelType = (levelValue >= 0 and levelValue <= 80) and "лвл" or "ilvl"
 
-    -- Добавляем уровень только если не отключено в настройках
-    if not db.hideLvl then
-        local lvlMSG = ("от " .. (db.lvlCount or 0) .. " лвл") .. (db.lvlInfo and db.lvlInfo ~= "" and (" (" .. db.lvlInfo .. ")") or "")
-        msg = msg .. " " .. lvlMSG
-    end
+  		local ilvlMSG = ("от " .. levelValue .. " " .. levelType) .. 
+                (db.ilvlInfo ~= "" and (" (" .. db.ilvlInfo .. ") ") or " ")
+                
+  		msg = msg .. ilvlMSG
     
 	local anrollMSG = (db.anrolCount > 0 and (db.anrolCount .. " a") or "") ..
 		(db.anrolInfo ~= "" and (" (" .. db.anrolInfo .. ") ") or " ")
