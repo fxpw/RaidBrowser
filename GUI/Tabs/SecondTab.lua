@@ -204,7 +204,7 @@ function E.GUI:CreateFindFrameRecord(i)
 		menuList[1].arg1 = _tempTable;
 		menuList[1].arg2 = E.Core:GetPlayerInfo();
 		for q = 1, menuList[1].arg2.maxSpecs do
-			menuList[q + 1] = {
+			menuList[q+1] = {
 				text = L["SendMSGToRL(spec" .. q .. ")"],
 				notCheckable = 1,
 				func = function()
@@ -216,14 +216,14 @@ function E.GUI:CreateFindFrameRecord(i)
 				end
 			}
 		end
-		menuList[menuList[1].arg2.maxSpecs + 1] = {
+		menuList[menuList[1].arg2.maxSpecs + 2] = {
 			text = L["Whisper"] .. " " .. menuList[1].arg1.rlName,
 			notCheckable = 1,
 			func = function()
 				ChatFrame_OpenChat(SLASH_WHISPER1 .. " " .. menuList[1].arg1.rlName .. " ")
 			end
 		}
-		menuList[menuList[1].arg2.maxSpecs + 2] = {
+		menuList[menuList[1].arg2.maxSpecs + 3] = {
 			text = L["Who"] .. " " .. menuList[1].arg1.rlName,
 			notCheckable = 1,
 			func = function()
