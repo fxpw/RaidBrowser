@@ -170,6 +170,16 @@ function E.GUI:PrintHelp()
 	E.Core:Print(L["Use /rb"])
 	E.Core:Print(L["Use /rb minimap"])
 	E.Core:Print(L["Use /rb help"])
+	E.Core:Print(L["Use /rb unstack"])
+end
+
+function E.GUI:UnstackFrame()
+	E.db.CollapseFrameX = 0
+	E.db.CollapseFrameY = 0
+	self.CollapseFrame:ClearAllPoints()
+	self.CollapseFrame:SetPoint("CENTER", UIParent, "CENTER", E.db.CollapseFrameX, E.db.CollapseFrameY)
+	E.GUI:HideMainFrame()
+	E.GUI:ShowMainFrame()
 end
 
 function E.GUI:ShowOptionsFrame()
@@ -202,6 +212,8 @@ function E.GUI:Init()
 			E.GUI:PrintHelp()
 		elseif msg == "minimap" then
 			E.GUI:ToggleMinimapIcon()
+		elseif msg == "unstack" then
+			E.GUI:UnstackFrame()
 		elseif msg ~= nil then
 			E.Core:Print(L["UnknownCommand"])
 		else
