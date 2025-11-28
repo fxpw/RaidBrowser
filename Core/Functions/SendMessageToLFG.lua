@@ -37,8 +37,14 @@ function E.Core:GetLFGMsg()
 		msg = msg .. healMSG
 		msg = msg .. ddMSG
 	end
-	local ilvlMSG = ("от " .. db.ilvlCount .. " ilvl") .. (db.ilvlInfo ~= "" and (" (" .. db.ilvlInfo .. ") ") or " ")
-	msg = msg .. ilvlMSG
+		local levelValue = db.ilvlCount or 0
+  		local levelType = (levelValue >= 0 and levelValue <= 80) and "лвл" or "ilvl"
+
+  		local ilvlMSG = ("от " .. levelValue .. " " .. levelType) .. 
+                (db.ilvlInfo ~= "" and (" (" .. db.ilvlInfo .. ") ") or " ")
+                
+  		msg = msg .. ilvlMSG
+    
 	local anrollMSG = (db.anrolCount > 0 and (db.anrolCount .. " a") or "") ..
 		(db.anrolInfo ~= "" and (" (" .. db.anrolInfo .. ") ") or " ")
 	msg = msg .. anrollMSG
