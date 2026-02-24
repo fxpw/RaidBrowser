@@ -373,6 +373,55 @@ E.Patterns.Raids = {
 		},
 		configOrder = 2,
 	},
+	{ -- эпох. ключи 2-3
+		raidName = "Эпох. ключи 2-3",
+		instanceName = {
+			{ "Испытание чемпиона", 1 }
+		},
+		size = 5,
+		difficulty = 2,
+		patterns = {
+			"ключ.*%([23]%)",
+			--"ключ.*%(3%)",
+		},
+		configOrder = 71,
+	},
+	{ -- эпох. ключи 4-6
+		raidName = "Эпох. ключи 4-6",
+		instanceName = {
+			{ "Испытание чемпиона", 1 }
+		},
+		size = 5,
+		difficulty = 2,
+		patterns = {
+			"ключ.*%([456]%)",
+		},
+		configOrder = 72,
+	},
+	{ -- эпох. ключи 7-8
+		raidName = "Эпох. ключи 7-8",
+		instanceName = {
+			{ "Испытание чемпиона", 1 }
+		},
+		size = 5,
+		difficulty = 2,
+		patterns = {
+			"ключ.*%([789]%)",
+		},
+		configOrder = 73,
+	},
+	{ -- эпох. ключи 10+
+		raidName = "Эпох. ключи 10+",
+		instanceName = {
+			{ "Испытание чемпиона", 1 }
+		},
+		size = 5,
+		difficulty = 2,
+		patterns = {
+			"ключ.*%([1][0123456789]%)",
+		},
+		configOrder = 74,
+	},
 	{ -- 6 ката
 		raidName = "6 ката",
 		instanceName = {

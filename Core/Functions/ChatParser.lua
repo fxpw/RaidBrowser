@@ -58,6 +58,12 @@ function E.Core:FindRaid(message)
 				if result then
 					E:CopyTable(raidInfoForReturn, raid);
 					raidInfoForReturn.find = true;
+
+					local resultName = string.match(message, "%[эпохальный ключ %- (.-)%]");
+					if resultName then
+						raidInfoForReturn["raidName"] = resultName;
+					end
+
 					-- Remove the substring from the message
 					message = string.gsub(message, pattern, '');
 					return raidInfoForReturn, message;
@@ -136,9 +142,12 @@ function E.Core:RemoveGarbage(message)
 
 	local quest_pattern = '\124cff808080\124.*\124h(%[.*%])\124h\124r';
 
+	local key_pattern = '\124cffa335ee\124.*\124h(%[.*%])\124h\124r';
+
 	message = message:gsub(achievement_pattern, '%1');
 	message = message:gsub(instlink_pattern, '%1');
 	message = message:gsub(quest_pattern, '%1');
+	message = message:gsub(key_pattern, '%1');
 
 	return string.gsub(message, http_pattern, '');
 end
