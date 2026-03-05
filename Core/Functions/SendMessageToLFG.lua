@@ -8,6 +8,9 @@ E.Core.IsNeedSendMessage = true
 -- hooksecurefunc("EncounterJournal_OpenJournalLink",function(...)print(...) end) -- test links
 function E.Core:GetLFGMsg()
 	local db = E.db
+	if(db.selectedRaid>#E.dungeonsForOptions or db.selectedRaid>#E.dungeonsForSpam) then
+		db.selectedRaid=1;
+	end
 	local msg = ""
 	if string.find(E.dungeonsForOptions[db.selectedRaid], "ilvl") then
 		return "Выберите другой рейд"

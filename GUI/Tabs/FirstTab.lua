@@ -144,6 +144,11 @@ E.dungeonsForSpam = {
 	{ "journal", "0:773:4", "Бронзовое Святилище 25 хм" },
 	{ "journal", "0:778:2", "Хиджал (репофарм)" },
 	{ "journal", "0:778:2", "Хиджал" },
+	{ "----------------Эпохальные подзимелья 220+ ilvl----------------" },
+	{ "journal", "0:778:2", "Эпох. ключи 2-3" },
+	{ "journal", "0:778:2", "Эпох. ключи 4-6" },
+	{ "journal", "0:778:2", "Эпох. ключи 7-9" },
+	{ "journal", "0:778:2", "Эпох. ключи 10+" },
 }
 
 E.GUI.Options.args.FirstTab = {
@@ -406,8 +411,7 @@ function E.GUI:AssembleFrameInfoUpdate()
 end
 
 function E.GUI:CreateAssembleFrameRecord(i)
-	E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] = E.GUI.CollapseFrame.MainFrame.AssembleFrame
-		.ScrollParent.Records[i] or CreateFrame("Button", nil, E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent);
+	E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] = E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] or CreateFrame("Button", nil, E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent);
 	local record = E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i]
 	record.playerInfo = record.playerInfo or {
 		playerName = "",
@@ -606,8 +610,7 @@ function E.GUI:CreateAssembleFrame()
 end
 
 function E.GUI:UpdateAssembleFrame()
-	self.numLogRecordFrames = math.floor((E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent:GetHeight() - 3) /
-		self.recordHeight);
+	self.numLogRecordFrames = math.floor((E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent:GetHeight() - 3) /self.recordHeight);
 	for i = 1, #E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records do
 		if E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i] then
 			E.GUI.CollapseFrame.MainFrame.AssembleFrame.ScrollParent.Records[i]:Hide();

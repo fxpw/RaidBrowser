@@ -381,10 +381,11 @@ E.Patterns.Raids = {
 		size = 5,
 		difficulty = 2,
 		patterns = {
+			"эпох" .. csep .. "ключи" .. csep .. "2",
 			"ключ.*%([23]%)",
 			--"ключ.*%(3%)",
 		},
-		configOrder = 71,
+		configOrder = 67,
 	},
 	{ -- эпох. ключи 4-6
 		raidName = "Эпох. ключи 4-6",
@@ -394,9 +395,10 @@ E.Patterns.Raids = {
 		size = 5,
 		difficulty = 2,
 		patterns = {
+			"эпох" .. csep .. "ключи" .. csep .. "4",
 			"ключ.*%([456]%)",
 		},
-		configOrder = 72,
+		configOrder = 68,
 	},
 	{ -- эпох. ключи 7-8
 		raidName = "Эпох. ключи 7-8",
@@ -406,9 +408,10 @@ E.Patterns.Raids = {
 		size = 5,
 		difficulty = 2,
 		patterns = {
+			"эпох" .. csep .. "ключи" .. csep .. "7",
 			"ключ.*%([789]%)",
 		},
-		configOrder = 73,
+		configOrder = 69,
 	},
 	{ -- эпох. ключи 10+
 		raidName = "Эпох. ключи 10+",
@@ -418,9 +421,10 @@ E.Patterns.Raids = {
 		size = 5,
 		difficulty = 2,
 		patterns = {
+			"эпох" .. csep .. "ключи" .. csep .. "10",
 			"ключ.*%([1][0123456789]%)",
 		},
-		configOrder = 74,
+		configOrder = 70,
 	},
 	{ -- 6 ката
 		raidName = "6 ката",
